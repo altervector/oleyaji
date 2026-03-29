@@ -1,16 +1,16 @@
 // HEM TREM LA LÍNIA DEL REQUIRE node-fetch
 
 exports.handler = async (event) => {
-    const { cat } = event.queryStringParameters;
+    const { cat } = event.queryStringParameters.Categoria;
     const BASE_ID = process.env.AIRTABLE_BASE_ID;
     const TOKEN = process.env.AIRTABLE_TOKEN;
-    const TABLE_NAME = 'Articles';
+    const TABLE_NAME = 'Plats';
 
     if (!cat) {
         return { statusCode: 400, body: JSON.stringify({ error: "Falta la categoria" }) };
     }
 
-    const filter = `AND(LOWER({Cat})=LOWER('${cat}'), {Web}=1)`;
+    const filter = `AND(LOWER({Categoria})=LOWER('${cat}'), {Visible}=1)`;
     const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}?filterByFormula=${encodeURIComponent(filter)}&sort[0][field]=id&sort[0][direction]=asc`;
 
     try {
