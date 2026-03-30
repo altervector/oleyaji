@@ -4,15 +4,11 @@ exports.handler = async (event) => {
     const cat = event.queryStringParameters ? event.queryStringParameters.Categoria : null;
     const { AIRTABLE_BASE_ID, AIRTABLE_TOKEN } = process.env;
 
-    if (!cat) {
-        return { 
-            statusCode: 400, 
-            headers: { "Access-Control-Allow-Origin": "*" },
-            body: JSON.stringify({ error: "Falta Categoria" }) 
-        };
-    }
+    // Si falta la categoria a la URL, enviem el 400
+    if (!cat) return { statusCode: 400, headers: { "Access-Control-Allow-Origin": "*" }, body: "Falta Categoria" };
 
-    const filter = `AND({Categoria}='${cat}', {Visible}=1)`;
+    // FILTRE PER A CHECKBOX: Si el check està marcat, {Visible} és cert
+    const filter = `AND({Categoria}='${cat}', {Visible})`;
     const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Plats?filterByFormula=${encodeURIComponent(filter)}`;
 
     try {
@@ -21,21 +17,16 @@ exports.handler = async (event) => {
         });
         const data = await response.json();
 
-        // Enviem només la llista de registres per simplificar el JS frontal
         return {
             statusCode: 200,
             headers: { 
                 "Content-Type": "application/json", 
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type"
+                "Access-Control-Allow-Origin": "*" 
             },
             body: JSON.stringify(data.records || [])
         };
     } catch (e) {
-        return { 
-            statusCode: 500, 
-            headers: { "Access-Control-Allow-Origin": "*" },
-            body: JSON.stringify({ error: "Error Airtable" }) 
-        };
+        console.error("Error Airtable:", e);
+        return { statusCode: 500, headers: { "Access-Control-Allow-Origin": "*" }, body: "Error Airtable" };
     }
 };
