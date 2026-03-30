@@ -1,42 +1,35 @@
-const https = require('https');
-
 exports.handler = async (event) => {
-    const { AIRTABLE_BASE_ID, AIRTABLE_TOKEN } = process.env;
-    const cat = event.queryStringParameters ? event.queryStringParameters.Categoria : null;
+    const { Categoria } = event.queryStringParameters;
+    const BASE_ID = process.env.AIRTABLE_BASE_ID;
+    const TOKEN = process.env.AIRTABLE_TOKEN;
 
-    if (!cat) {
-        return { statusCode: 400, headers: { "Access-Control-Allow-Origin": "*" }, body: "Falta Categoria" };
+    if (!Categoria) {
+        return { statusCode: 400, body: JSON.stringify({ error: "Falta Categoria" }) };
     }
 
-    const filter = encodeURIComponent(`AND({Categoria}='${cat}', {Visible})`);
-    const options = {
-        hostname: 'api.airtable.com',
-        path: `/v0/${AIRTABLE_BASE_ID}/Plats?filterByFormula=${filter}`,
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${AIRTABLE_TOKEN}`
-        }
-    };
+    // Filtre directe: Compara el text i avalua el Checkbox
+    const filter = `AND({Categoria}='${Categoria}', {Visible})`;
+    const url = `https://api.airtable.com/v0/${BASE_ID}/Plats?filterByFormula=${encodeURIComponent(filter)}`;
 
-    return new Promise((resolve, reject) => {
-        const req = https.request(options, (res) => {
-            let body = '';
-            res.on('data', (d) => body += d);
-            res.on('end', () => {
-                resolve({
-                    statusCode: 200,
-                    headers: { 
-                        "Content-Type": "application/json", 
-                        "Access-Control-Allow-Origin": "*" 
-                    },
-                    body: JSON.stringify(JSON.parse(body).records || [])
-                });
-            });
+    try {
+        const response = await fetch(url, {
+            headers: { 
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json'
+            }
         });
 
-        req.on('error', (e) => {
-            resolve({ statusCode: 500, body: "Error Airtable" });
-        });
-        req.end();
-    });
+        const data = await response.json();
+
+        return {
+            statusCode: 200,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify(data)
+        };
+    } catch (error) {
+        return { statusCode: 500, body: JSON.stringify({ error: "Error de servidor" }) };
+    }
 };
