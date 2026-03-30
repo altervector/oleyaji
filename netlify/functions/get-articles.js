@@ -1,30 +1,41 @@
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
 exports.handler = async (event) => {
-    // 1. Agafem la Categoria de la URL
     const cat = event.queryStringParameters.Categoria;
     const { AIRTABLE_BASE_ID, AIRTABLE_TOKEN } = process.env;
-    const TABLE_NAME = 'Plats'; // <--- Nom de la pestanya a Airtable
+    const TABLE_NAME = 'Plats'; 
 
     if (!cat) return { statusCode: 400, body: "Falta Categoria" };
 
-    // 2. Filtre: Coincideix categoria i el xec de "Visible" està marcat
+    // Filtre: Vigila que a Airtable la columna es digui "Categoria" i "Visible"
     const filter = `AND(LOWER({Categoria})=LOWER('${cat}'), {Visible}=1)`;
     const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}?filterByFormula=${encodeURIComponent(filter)}`;
 
     try {
         const response = await fetch(url, {
-            headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` }
+            headers: { 
+                "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
+                "Content-Type": "application/json"
+            }
         });
+
         const data = await response.json();
+
+        // Si Airtable torna un error (per exemple, nom de columna malament)
+        if (data.error) {
+            console.error("Error d'Airtable:", data.error);
+            return { statusCode: 500, body: JSON.stringify(data.error) };
+        }
 
         return {
             statusCode: 200,
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*" 
+                "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(data.records || [])
         };
     } catch (e) {
-        return { statusCode: 500, body: "Error de connexió amb Airtable" };
+        return { statusCode: 500, body: "Error de xarxa" };
     }
 };
