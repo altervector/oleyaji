@@ -47,13 +47,14 @@
 
     <script src="https://altervector.github.io/oleyajidinamics/capcalera.js"></script>
     <script src="https://altervector.github.io/oleyajidinamics/enllacos.js"></script>
-    
+
+
     <script>
     (function() {
         var s = document.createElement("script");
         s.src = "https://altervector.github.io/oleyajidinamics/principallogic.js?v=" + new Date().getTime();
         s.defer = true;
-        document.body.appendChild(s);
+        document.head.appendChild(s); // Cambiado a head para evitar errores de carga
     })();
     </script>
 
