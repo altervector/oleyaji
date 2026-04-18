@@ -2,78 +2,63 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=400px, initial-scale=1.0"> 
+    <meta name="viewport" content="width=400px, initial-scale=1.0">
+    <title>Olé y Ají</title>
+
+    <style>
+        /* El velo inicial */
+        body { opacity: 0; transition: opacity 0.5s ease-in; }
+    </style>
 
     <script>
-    const sitiosSeguros = [
-        "altervector.com", 
-        "netlify.app", 
-        "localhost", 
-        "127.0.0.1"
-        ];
+        (function() {
+            const now = new Date().getTime();
+            // Cargamos el cerebro primero (forzando descarga para evitar caché)
+            document.write('<script src="https://cdn.jsdelivr.net/gh/altervector/oleyajidinamics@test/config.js?v=' + now + '"><\/script>');
+        })();
+    </script>
 
-        const esSitioSeguro = sitiosSeguros.some(sitio => window.location.hostname.includes(sitio));
+    <script>
+        // CARGADOR INTELIGENTE
+        (function() {
+            if (typeof CONFIG === 'undefined') return;
 
+            // 1. SEGURIDAD INMEDIATA
+            const esSitioSeguro = CONFIG.SITIOS_SEGUROS.some(s => window.location.hostname.includes(s));
             if (!esSitioSeguro) {
-                // Bloqueo total si el dominio es sospechoso
                 document.documentElement.innerHTML = ""; 
-                window.location.href = "https://oleyaji.altervector.com";
+                window.location.href = CONFIG.URL_OFICIAL;
+                return;
             }
-    </script>
-    
-    <script>
-    (function() {
-        var cssLink = document.createElement("link");
-        cssLink.rel = "stylesheet";
-        // Añade el tiempo exacto en milisegundos para que la URL siempre sea "nueva" para el navegador
-        cssLink.href = "https://cdn.jsdelivr.net/gh/altervector/oleyajidinamics@test/estils.css?v=" + new Date().getTime();
-        /*///////////////////////////////////altervector.github.io/oleyajidinamics/estils.css///////////////////////////////////////*/
-        document.head.appendChild(cssLink);
-        // Comprobar si el modo edición está activo para poner el fondo amarillo de inmediato
-        if (sessionStorage.getItem('adminMode') === 'true') {
-        document.documentElement.style.setProperty('background-color', 'var(--bg-htmledit)', 'important');
-        }
-    })();
-    </script>
 
-        <style>
-        /* El velo: ocultamos todo el cuerpo de la web */
-        body { opacity: 0; }
-        </style>
-    
- 
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            document.body.style.display = 'block';
-        });
+            const now = new Date().getTime();
+            const repoBase = CONFIG.ENTORN === "TEST"? CONFIG.RUTES.TEST : CONFIG.RUTES.PROD;
+
+            // 2. CARGA DE ESTILOS
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = repoBase + "estils.css?v=" + now;
+            document.head.appendChild(css);
+
+            // 3. CARGA DE LOGICA EN ORDEN
+            const scripts = ["capcalera.js", "enllacos.js", "indexlogic.js"];
+            scripts.forEach(file => {
+                const s = document.createElement("script");
+                s.src = repoBase + file + "?v=" + now;
+                s.async = false;
+                document.body.appendChild(s);
+            });
+
+            // 4. QUITAR VELO (Corregido: usamos opacity 1)
+            window.addEventListener('load', () => {
+                document.body.style.opacity = "1";
+            });
+        })();
     </script>
-    
 </head>
 <body>
-    hola
     <div id="capcalera-dinamica"></div>
-
-    
-            <div id="contingut-index"></div>
-
-            <hr class="separador-hr">
-            <hr class="separador-hr">
-
+    <div id="contingut-index"></div>
     <div id="bloc-enllacos-dinamic"></div>
-
-
-
-    <script src="https://cdn.jsdelivr.net/gh/altervector/oleyajidinamics@test/capcalera.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/altervector/oleyajidinamics@test/enllacos.js"></script>
-    
-    <script>
-    (function() {
-        var s = document.createElement("script");
-        s.src = "https://cdn.jsdelivr.net/gh/altervector/oleyajidinamics@test/indexlogic.js?v=" + new Date().getTime();
-        s.defer = true;
-        document.head.appendChild(s);
-    })();
-    </script>
-
 </body>
 </html>
