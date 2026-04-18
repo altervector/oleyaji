@@ -46,7 +46,7 @@
                 const s = document.createElement("script");
                 s.src = repoBase + file + "?v=" + now;
                 s.async = false;
-                document.body.appendChild(s);
+                document.head.appendChild(s);
             });
 
             // 4. QUITAR VELO (Corregido: usamos opacity 1)
