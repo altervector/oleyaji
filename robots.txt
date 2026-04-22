@@ -1,1 +1,1 @@
-Sitemap: https://oleyaji.netlify.app/sitemap.xml
+Sitemap: https://oleyaji.altervector.app/sitemap.xml
