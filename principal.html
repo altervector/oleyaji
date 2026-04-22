@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+    (function() {
+        const now = new Date().getTime();
+        // 1. Carreguem el CSS amb versió per evitar cache
+        var cssLink = document.createElement("link");
+        cssLink.rel = "stylesheet";
+        cssLink.href = "https://raw.githack.com/altervector/oleyajidinamics/test/estils.css?v=" + now;
+        document.head.appendChild(cssLink);
+
+        // 2. Carreguem el CONFIG (el magatzem central)
+        document.write('<script src="https://raw.githack.com/altervector/oleyajidinamics/test/config.js?v=' + now + '"><\/script>');
+    })();
+    </script>
+
+    <style>
+        body { opacity: 0; transition: opacity 0.5s; } /* Velo inicial */
+    </style>
+    
+    <link rel="icon" href="https://altervector.github.io/oleyajidinamics/Icon/logonou.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div id="capcalera-dinamica"></div>
+    
+    <div class="galeria-productes">
+        <h1 id="titol-categoria">Carregant...</h1>
+        <div id="cosgaleria"></div>
+    </div>
+    
+    <hr class="separador-hr">
+    <hr class="separador-hr">
+
+    <div id="bloc-enllacos-dinamic"></div>
+
+    <script>
+    (function() {
+        // Esperem que CONFIG estigui disponible per carregar la resta
+        const interval = setInterval(() => {
+            if (typeof CONFIG !== 'undefined') {
+                clearInterval(interval);
+                const base = CONFIG.RUTES[CONFIG.ENTORN];
+                const v = new Date().getTime();
+
+                // Carreguem els scripts seguint l'ordre i la ruta del CONFIG
+                const scripts = ['capcalera.js', 'enllacos.js', 'principallogic.js'];
+                scripts.forEach(s => {
+                    const sc = document.createElement('script');
+                    sc.src = `${base}${s}?v=${v}`;
+                    document.body.appendChild(sc);
+                });
+            }
+        }, 50);
+    })();
+    </script>
+
+</body>
+</html>
