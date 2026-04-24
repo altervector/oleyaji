@@ -1,6 +1,7 @@
 export async function onRequest(context) {
-  // Leemos la clave que creamos antes desde el binding KV_DATA
-  const valorKV = await context.env.KV_DATA.get("SALUDO_PRUEBA");
+  // Leemos la clave específica del cliente
+  const fecha = await context.env.KV_DATA.get("OLEYAJI/DATA_CADUCITAT");
   
-  return new Response(valorKV || "No se encontró el dato");
+  // Devolvemos el dato
+  return new Response(fecha || "2026-01-01");
 }
