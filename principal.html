@@ -44,7 +44,7 @@
         const interval = setInterval(() => {
             if (typeof CONFIG !== 'undefined') {
                 clearInterval(interval);
-                const base = CONFIG.RUTES[CONFIG.ENTORN];
+                const base = CONFIG.BASE_URL;
                 const v = new Date().getTime();
 
                 // Carreguem els scripts seguint l'ordre i la ruta del CONFIG

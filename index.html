@@ -31,7 +31,7 @@
             }
 
             const now = new Date().getTime();
-            const repoBase = CONFIG.ENTORN === "TEST"? CONFIG.RUTES.TEST : CONFIG.RUTES.PROD;
+            const repoBase = CONFIG.BASE_URL;
 
             // 2. CARGA DE ESTILOS
             const css = document.createElement("link");
