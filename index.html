@@ -13,7 +13,8 @@
     <script>
         (function() {
             const now = new Date().getTime();
-            document.write('<script src="${CONFIG.BASE_URL}config.js?v=' + now + '"><\/script>');
+            const rutaConfig = "https://altervector.github.io/oleyajidinamics/config.js";
+            document.write('<script src="' + rutaConfig + '?v=' + now + '"><\/script>');
         })();
     </script>
 
