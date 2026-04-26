@@ -3,31 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olé y Ají - Principal</title>
 
-        <script>
+    <style>
+        body { opacity: 0; transition: opacity 0.5s ease-in; }
+    </style>
+
+    <script>
         (function() {
             const now = new Date().getTime();
             const rutaConfig = "https://altervector.github.io/oleyajidinamics/config.js";
             document.write('<script src="' + rutaConfig + '?v=' + now + '"><\/script>');
         })();
-        </script>
+    </script>
 
-        <script>
+    <script>
         (function() {
-            const now = new Date().getTime();
-            // 1. Carreguem el CSS amb versió per evitar cache
-            var cssLink = document.createElement("link");
-            cssLink.rel = "stylesheet";
-            cssLink.href = CONFIG.BASE_URL + "estils.css?v=" + now;
-            document.head.appendChild(cssLink);
-        })();
-        </script>
+            if (typeof CONFIG === 'undefined') return;
 
-    <style>
-        body { opacity: 0; transition: opacity 0.5s; } /* Velo inicial */
-    </style>
-    
-    <link rel="icon" href="${CONFIG.BASE_URL}Icon/logonou.ico" type="image/x-icon">
+            const now = new Date().getTime();
+            const repoBase = CONFIG.BASE_URL;
+
+            // 1. CARGA DE ESTILOS
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = repoBase + "estils.css?v=" + now;
+            document.head.appendChild(css);
+
+            // 2. CARGA DEL FAVICON (Ara sí, amb la ruta bona)
+            const icon = document.createElement("link");
+            icon.rel = "icon";
+            icon.href = repoBase + "Icon/logonou.ico";
+            document.head.appendChild(icon);
+
+            // 3. CARGA DE LOGICA (Afegim l'API i el teu logic del Principal)
+            const scripts = ["api.js", "capcalera.js", "enllacos.js", "principallogic.js"];
+            scripts.forEach(file => {
+                const s = document.createElement("script");
+                s.src = repoBase + file + "?v=" + now;
+                s.async = false;
+                document.head.appendChild(s);
+            });
+
+            // 4. QUITAR VELO
+            window.addEventListener('load', () => {
+                document.body.style.opacity = "1";
+            });
+        })();
+    </script>
 </head>
 <body>
 
@@ -42,27 +65,6 @@
     <hr class="separador-hr">
 
     <div id="bloc-enllacos-dinamic"></div>
-
-    <script>
-    (function() {
-        // Esperem que CONFIG estigui disponible per carregar la resta
-        const interval = setInterval(() => {
-            if (typeof CONFIG !== 'undefined') {
-                clearInterval(interval);
-                const base = CONFIG.BASE_URL;
-                const v = new Date().getTime();
-
-                // Carreguem els scripts seguint l'ordre i la ruta del CONFIG
-                const scripts = ['capcalera.js', 'enllacos.js', 'principallogic.js'];
-                scripts.forEach(s => {
-                    const sc = document.createElement('script');
-                    sc.src = `${base}${s}?v=${v}`;
-                    document.body.appendChild(sc);
-                });
-            }
-        }, 50);
-    })();
-    </script>
 
 </body>
 </html>
