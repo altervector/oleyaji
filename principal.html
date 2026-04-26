@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script>
-    (function() {
-        const now = new Date().getTime();
-        // 1. Carreguem el CSS amb versió per evitar cache
-        var cssLink = document.createElement("link");
-        cssLink.rel = "stylesheet";
-        cssLink.href = "${CONFIG.BASE_URL}estils.css?v=" + now;
-        document.head.appendChild(cssLink);
+        <script>
+        (function() {
+            const now = new Date().getTime();
+            const rutaConfig = "https://altervector.github.io/oleyajidinamics/config.js";
+            document.write('<script src="' + rutaConfig + '?v=' + now + '"><\/script>');
+        })();
+        </script>
 
-        // 2. Carreguem el CONFIG (el magatzem central)
-        document.write('<script src="${CONFIG.BASE_URL}config.js?v=' + now + '"><\/script>');
-    })();
-    </script>
+        <script>
+        (function() {
+            const now = new Date().getTime();
+            // 1. Carreguem el CSS amb versió per evitar cache
+            var cssLink = document.createElement("link");
+            cssLink.rel = "stylesheet";
+            cssLink.href = "${CONFIG.BASE_URL}estils.css?v=" + now;
+            document.head.appendChild(cssLink);
+
+            // 2. Carreguem el CONFIG (el magatzem central)
+            document.write('<script src="${CONFIG.BASE_URL}config.js?v=' + now + '"><\/script>');
+        })();
+        </script>
 
     <style>
         body { opacity: 0; transition: opacity 0.5s; } /* Velo inicial */
