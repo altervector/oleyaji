@@ -18,11 +18,8 @@
             // 1. Carreguem el CSS amb versió per evitar cache
             var cssLink = document.createElement("link");
             cssLink.rel = "stylesheet";
-            cssLink.href = "${CONFIG.BASE_URL}estils.css?v=" + now;
+            cssLink.href = CONFIG.BASE_URL + "estils.css?v=" + now;
             document.head.appendChild(cssLink);
-
-            // 2. Carreguem el CONFIG (el magatzem central)
-            document.write('<script src="${CONFIG.BASE_URL}config.js?v=' + now + '"><\/script>');
         })();
         </script>
 
