@@ -39,7 +39,7 @@
             document.head.appendChild(css);
 
             // 3. CARGA DE LOGICA EN ORDEN
-            const scripts = ["api.js", "capcalera.js", "enllacos.js", "galeria.js", "adminlogic.js"];
+            const scripts = ["api.js", "capcalera.js", "enllacos.js", "indexlogic.js"];
             scripts.forEach(file => {
                 const s = document.createElement("script");
                 s.src = repoBase + file + "?v=" + now;
