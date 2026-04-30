@@ -81,10 +81,10 @@
                                 sessionStorage.setItem('adminMode', 'true');
                                 location.reload();
                             } else {
-                                alert("Clave incorrecta");
+                                mostrarAvis("❌ Clau incorrecta", 'error')
                             }
                         } catch (error) {
-                            alert("Error de conexión");
+                            mostrarAvis("❌ Error de connexió", 'error')
                         }
                     }, 1500); 
                 };

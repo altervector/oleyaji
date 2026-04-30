@@ -81,15 +81,15 @@
                         .then(data => {
                             if (document.body.contains(loader)) document.body.removeChild(loader);
                             if(data.secure_url) {
-                                alert("✅ Carta actulitzada! Reinicia per veure els canvis.");
+                                mostrarAvis("✅ Carta actualitzada!")
                                 location.reload();
                             } else {
-                                alert("❌ Error: " + (data.error ? data.error.message : "Desconegut"));
+                                mostrarAvis("❌ Error de pujada.", 'error')
                             }
                         })
                         .catch(err => {
                             if (document.body.contains(loader)) document.body.removeChild(loader);
-                            alert("❌ Error de connexió.");
+                            mostrarAvis("❌ Error de connexió.", 'error')
                         });
                     };
                     

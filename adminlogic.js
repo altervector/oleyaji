@@ -27,6 +27,17 @@
         document.getElementById('modal-detall').style.display = 'none';
     }
 
+        window.mostrarAvis = function(missatge, tipus = 'ok') {
+            const colors = { ok: '#28a745', error: '#dc3545', info: '#191970' };
+            const avis = document.createElement('div');
+            avis.style = `position:fixed; top:20px; left:50%; transform:translateX(-50%); 
+                background:${colors[tipus]}; color:white; padding:15px 30px; border-radius:10px; 
+                font-family:sans-serif; font-size:15px; font-weight:bold; z-index:99999; 
+                box-shadow:0 4px 15px rgba(0,0,0,0.3); text-align:center;`;
+            avis.innerText = missatge;
+            document.body.appendChild(avis);
+            setTimeout(() => avis.remove(), 3000);
+        };
 
     /*/////////////////////////  2. OBRIR MODAL (CLIENT I ADMIN)  ///////// */
 
@@ -229,7 +240,7 @@
                     });
                     btnAccion.innerHTML = "✅ Imatge OK";
                     btnAccion.style.background = "#28a745";
-                    alert("Imatge actualitzada correctament!");
+                    mostrarAvis("✅ Imatge actualitzada!")
                 } else {
                     document.getElementById('nombre-foto-nueva').value = nomFinal;
                     const btnFinal = document.getElementById('btn-crear-final');
@@ -273,7 +284,7 @@
             if (fotoNova) dades["Foto"] = fotoNova;
         }
 
-        if (!dades.Nom) { alert("El nom és obligatori"); return; }
+        if (!dades.Nom) { mostrarAvis("⚠️ El nom és obligatori", 'info'); return; }
 
         fetch(CONFIG.BASE_WORKER, {
             method: 'POST',
@@ -282,11 +293,11 @@
         })
         .then(response => {
             if (response.ok) {
-                alert(idReal ? "Guardat correctament!" : "Nou plat creat amb èxit!");
+                mostrarAvis(idReal ? "✅ Guardat!" : "✅ Nou plat creat!")
                 tancarModal();
                 location.reload();
             } else {
-                alert("Error en l'operació.");
+                mostrarAvis("❌ Error en l'operació.", 'error')
             }
         })
         .catch(error => console.error('Error:', error));
