@@ -3,7 +3,7 @@ const CONFIG = {
 
 
     // 1. RUTA  GITHUB
-    BASE_URL: "https://altervector.github.io/oleyajidinamics/",
+    BASE_URL: "https://altervector.github.io/oleyaji/",
 
     // 2. SEGURETAT (Tu lista exacta del index)
     SITIOS_SEGUROS: ["altervector.com", "pages.dev", "netlify.app", "localhost", "127.0.0.1"],
