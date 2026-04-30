@@ -29,14 +29,21 @@
 
         window.mostrarAvis = function(missatge, tipus = 'ok') {
             const colors = { ok: '#28a745', error: '#dc3545', info: '#191970' };
-            const avis = document.createElement('div');
-            avis.style = `position:fixed; top:20px; left:50%; transform:translateX(-50%); 
-                background:${colors[tipus]}; color:white; padding:15px 30px; border-radius:10px; 
-                font-family:sans-serif; font-size:15px; font-weight:bold; z-index:99999; 
-                box-shadow:0 4px 15px rgba(0,0,0,0.3); text-align:center;`;
-            avis.innerText = missatge;
-            document.body.appendChild(avis);
-            setTimeout(() => avis.remove(), 3000);
+            const overlay = document.createElement('div');
+            overlay.style = `position:fixed; top:0; left:0; width:100%; height:100%; 
+                background:rgba(0,0,0,0.5); z-index:99999; 
+                display:flex; align-items:center; justify-content:center;`;
+            overlay.innerHTML = `
+                <div style="background:white; border-radius:12px; padding:30px 40px; 
+                    max-width:320px; width:90%; text-align:center; 
+                    box-shadow:0 8px 30px rgba(0,0,0,0.3); font-family:sans-serif;">
+                    <p style="font-size:16px; color:#333; margin:0 0 20px 0;">${missatge}</p>
+                    <button onclick="this.closest('div').parentElement.remove()" 
+                        style="background:${colors[tipus]}; color:white; border:none; 
+                        padding:10px 30px; border-radius:8px; font-size:15px; 
+                        font-weight:bold; cursor:pointer;">OK</button>
+                </div>`;
+            document.body.appendChild(overlay);
         };
 
     /*/////////////////////////  2. OBRIR MODAL (CLIENT I ADMIN)  ///////// */
