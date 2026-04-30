@@ -240,6 +240,8 @@
                     });
                     btnAccion.innerHTML = "✅ Imatge OK";
                     btnAccion.style.background = "#28a745";
+                    const btnReintentar = document.getElementById('btn-reintentar');
+                    if (btnReintentar) btnReintentar.remove();
                     mostrarAvis("✅ Imatge actualitzada!")
                 } else {
                     document.getElementById('nombre-foto-nueva').value = nomFinal;
