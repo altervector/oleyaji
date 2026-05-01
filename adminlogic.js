@@ -240,32 +240,40 @@
             if (dataCloudy.secure_url) {
                 const nomFinal = dataCloudy.public_id + "." + dataCloudy.format;
 
-                if (idAirtable && idAirtable !== "null") {
-                    btnAccion.innerHTML = "📝 ACTUALITZANT...";
-                    await fetch(CONFIG.BASE_WORKER, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id: idAirtable, Foto: nomFinal })
-                    });
-                    btnAccion.innerHTML = "✅ Imatge OK";
-                    btnAccion.style.background = "#28a745";
-                    const btnReintentar = document.getElementById('btn-reintentar');
-                    if (btnReintentar) btnReintentar.remove();
-                    mostrarAvis("✅ Imatge actualitzada!", 'ok', true);
-                } else {
-                    document.getElementById('nombre-foto-nueva').value = nomFinal;
-                    const btnFinal = document.getElementById('btn-crear-final');
-                    if (btnFinal) {
-                        btnFinal.disabled = false;
-                        btnFinal.style.background = "#28a745";
-                        btnFinal.style.cursor = "pointer";
-                        btnFinal.style.opacity = "1";
-                    }
-                    document.getElementById('aviso-foto').style.display = 'none';
-                    if (document.getElementById('btn-reintentar')) document.getElementById('btn-reintentar').remove();
-                    btnAccion.innerHTML = "✅ FOTO GUARDADA";
-                    btnAccion.style.background = "#28a745";
+                // Els dos casos (plat existent i plat nou) fan el mateix:
+                // Guarden el nom de la foto i es queden al modal sense recarregar.
+                // La foto s'enviarà a Airtable quan es polsi GUARDAR.
+
+                // Guardem el nom al camp ocult (pot ser el de nou o el d'existent)
+                let campFoto = document.getElementById('nombre-foto-nueva');
+                if (!campFoto) {
+                    // Plat existent — creem el camp ocult si no existeix
+                    campFoto = document.createElement('input');
+                    campFoto.type = 'hidden';
+                    campFoto.id = 'nombre-foto-nueva';
+                    document.body.appendChild(campFoto);
                 }
+                campFoto.value = nomFinal;
+
+                // Actualitzem botons i etiqueta
+                const btnReintentar = document.getElementById('btn-reintentar');
+                if (btnReintentar) btnReintentar.remove();
+                btnAccion.innerHTML = "✅ FOTO GUARDADA";
+                btnAccion.style.background = "#28a745";
+                btnAccion.style.pointerEvents = "none";
+
+                // Habilitem el boto CREAR PLATO si existeix (plat nou)
+                const btnFinal = document.getElementById('btn-crear-final');
+                if (btnFinal) {
+                    btnFinal.disabled = false;
+                    btnFinal.style.background = "#28a745";
+                    btnFinal.style.cursor = "pointer";
+                    btnFinal.style.opacity = "1";
+                }
+
+                // Amaguem l'avís de foto obligatòria si existeix (plat nou)
+                const avisofoto = document.getElementById('aviso-foto');
+                if (avisofoto) avisofoto.style.display = 'none';
             }
         } catch (error) {
             console.error("Error:", error);
@@ -291,10 +299,9 @@
             "Categoria": [document.getElementById('edit-categoria').value]
         };
 
-        if (!idReal) {
-            const fotoNova = document.getElementById('nombre-foto-nueva').value;
-            if (fotoNova) dades["Foto"] = fotoNova;
-        }
+        // Tant per a plat nou com per a plat existent, enviem la foto si s'ha canviat
+        const campFoto = document.getElementById('nombre-foto-nueva');
+        if (campFoto && campFoto.value) dades["Foto"] = campFoto.value;
 
         if (!dades.Nom) { mostrarAvis("⚠️ El nom és obligatori", 'info'); return; }
 
