@@ -17,7 +17,7 @@
             <hr class="separador-hr">
             <hr class="separador-hr">
             <footer style="text-align: center; padding: 40px 20px; font-family: 'Segoe UI', Roboto, sans-serif;">
-                <a href="https://altervector.com" target="_blank" style="text-decoration: none; color: #999; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">
+                <a href="https://www.altervector.com" target="_blank" style="text-decoration: none; color: #999; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">
                 Powered by <span style="color: #129dfc; font-weight: bold; border-bottom: 1px solid #129dfc;">AlterVector</span>
                 </a>
             </footer>
