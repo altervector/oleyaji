@@ -139,7 +139,7 @@ a {
         max-width: var(--amplada-mobil);
         width: 90%;
         margin: 10px auto;
-        height: 200px; 
+        height: 100%; 
         display: flex; 
         gap: 8px; 
         align-items: stretch; /* <--- Afegeix això      Iguala derta i esquerra*/
