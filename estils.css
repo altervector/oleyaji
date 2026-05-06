@@ -160,6 +160,7 @@ a {
 
 /*____________________ IMATGE GRAN A LA DRETA _______Contenidor...____*/
                 .imatge-dreta {
+                    display: flex; 
                     width: 58%;
                     height: 100%; 
                     margin: 0px 0px;
