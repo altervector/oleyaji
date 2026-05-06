@@ -41,7 +41,7 @@ html {
 }
 
 body {
-    max-width: var(--amplada-mobil) !important;
+    max-width: device-width; !important;
     margin: 0 auto !important;
     
     background-color: var(--bg-body) !important; /* Para que deje ver el fondo del html */
