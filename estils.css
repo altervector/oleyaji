@@ -136,10 +136,10 @@ a {
 /*//////////////////////   BLOC 3 IMATGES (Index)    ////////////////////////////////////////////*/
 
     .bloc-imatges {    /*   Contenidor   */
-        max-width: var(--amplada-mobil);
+        max-width: device-width;;
         width: 90%;
         margin: 10px auto;
-        height: 100%; 
+        height: 600px; 
         display: flex; 
         gap: 8px; 
         align-items: stretch; /* <--- Afegeix això      Iguala derta i esquerra*/
@@ -169,7 +169,7 @@ a {
 
 /*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
                 .bloc-imatge-inferior {
-                    max-width: var(--amplada-mobil);
+                    max-width: device-width;;
                     width: 90%;
                     margin: 10px auto; /* Donem espai (10px) perquè no s'enganxi a dalt */
                     display: block;
@@ -178,7 +178,7 @@ a {
 
                 /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
                 .item-horizontal {
-                    height: 97px !important; 
+                    height: 297px !important; 
                     margin-bottom:10px;
                 }
 
@@ -229,7 +229,7 @@ a {
 }
                 /* 2. Apliquem els 97px NOMÉS a les fotos de la columna esquerra */
             .columna-esquerra .enllac-imatge-categoria {
-                height: 96px;
+                height: 296px;
             }
 
             /* 3. Apliquem el 100% NOMÉS a la foto de la dreta */
