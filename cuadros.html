@@ -74,7 +74,7 @@
 
 /*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
                 .bloc-imatge-inferior {
-                    max-width: var(--amplada-mobil);
+                    max-width: device-width;;
                     width: 90%;
                     margin: 10px auto; /* Donem espai (10px) perquè no s'enganxi a dalt */
                     display: block;
@@ -83,7 +83,7 @@
 
                 /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
                 .item-horizontal {
-                    height: 97px !important; 
+                    height: 296px !important; 
                     margin-bottom:10px;
                 }
 
@@ -109,8 +109,8 @@
 /*/////////////////////////   ESTIL DE LES IMATGES   (Index)   ///////////////////*/
 
 .imatge-categoria {
-    width: 50%;
-    height: 50%; 
+    width: 100%;
+    height: 100%; 
     object-fit: cover; 
     display: block;
     outline: 1px solid orangered !important;
@@ -120,7 +120,7 @@
 .enllac-imatge-categoria {
     position: relative; /* Això és l'àncora pels textos */
     display: block;
-    width: 50%;
+    width: 100%;
     box-shadow: -1px 2px 8px rgba(0, 0, 0, 0.8);
     /*background-color: #f5f5f5;*/
     padding: 0px;
@@ -134,7 +134,7 @@
 }
                 /* 2. Apliquem els 97px NOMÉS a les fotos de la columna esquerra */
             .columna-esquerra .enllac-imatge-categoria {
-                height: 96px;
+                height: 396px;
             }
 
             /* 3. Apliquem el 100% NOMÉS a la foto de la dreta */
