@@ -5,7 +5,7 @@
     
     
     /* Medidas Maestras */
-    /*ok*/--amplada-mobil: 400px;
+    /*ok*/--amplada-mobil: 860px;
     
     /* Fondos */
     /*ok*/--bg-html: #deccba;        /* Fondo arena total */
@@ -139,7 +139,7 @@ a {
         max-width:var(--amplada-mobil);
         width: 90%;
         margin: 10px auto;
-        height: 100%; 
+        height: 600px; 
         display: flex; 
         gap: 8px; 
         align-items: stretch; /* <--- Afegeix això      Iguala derta i esquerra*/
