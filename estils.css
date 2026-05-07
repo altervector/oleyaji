@@ -1,7 +1,7 @@
 /*/////////////////////////   RESET I BASES    //////////////////////////////////////////////////////////// */
 
 :root {
-    /* --- CONFIGURACIÓ DE SEGURETAT --- */
+    /* --- CONFIGURACIÃ“ DE SEGURETAT --- */
     
     
     /* Medidas Maestras */
@@ -15,7 +15,7 @@
     /*ok*/--bg-modalnew: rgba(40, 167, 69, 0.8);        /* Fondo del modal Nuevo*/
     
     /* Textos */
-    /*ok*/--text-noms: #0056b3;      /* Azul  para nombres y títulos */
+    /*ok*/--text-noms: #0056b3;      /* Azul  para nombres y tÃ­tulos */
     --text-desc: #666666;      /* Gris para descripciones */
     --text-preu: #191970;      /* Color del precio */
     --text-light: #ffffff;     /* Blanco para textos sobre fondos oscuros */
@@ -23,9 +23,9 @@
     /* Interactivos (Links y Botones) */
     /*ok*/--color-hr: #0056b3;       /*Color HR*/
     /*ok*/--color-link: #0056b3;     /* Color de los enlaces */
-    --color-btn-save: #191970; /* Botón guardar */
-    --color-btn-add: #28a745;  /* Botón flotante de añadir (verde) */
-    --color-accent: #fb9d46;   /* El naranja para detalles pequeños */
+    --color-btn-save: #191970; /* BotÃ³n guardar */
+    --color-btn-add: #28a745;  /* BotÃ³n flotante de aÃ±adir (verde) */
+    --color-accent: #fb9d46;   /* El naranja para detalles pequeÃ±os */
 
 /* Textos y Detalles */
     --color-titols: #191970;    /* Azul medianoche */
@@ -48,7 +48,7 @@ body {
 
     min-height: 100vh;
     box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Opcional: le da un toque profesional al marco */
-    overflow-x: hidden; /* Evita el moviment lateral al mòbil */
+    overflow-x: hidden; /* Evita el moviment lateral al mÃ²bil */
     position: relative;
 }   
 
@@ -60,20 +60,20 @@ img {
 
 a {
     text-decoration: none;
-    color: inherit; /* Els enllaços no canvien de color sols */
+    color: inherit; /* Els enllaÃ§os no canvien de color sols */
 }
 
 
-/*/////////////////////////   CAPÇALERA PRINCIPAL  //////////////////////////////////////////////////////////////////*/
+/*/////////////////////////   CAPÃ‡ALERA PRINCIPAL  //////////////////////////////////////////////////////////////////*/
 
 
 .capcalera-principal {        /*   Contenidor   */
 
-    max-width: var(--amplada-mobil);  /* La teva mida de referència */
+    max-width: var(--amplada-mobil);  /* La teva mida de referÃ¨ncia */
     width: 97%;
     margin: 5px auto;  /* Centrat a la pantalla */
-    position: relative; /* "Àncora" perquè el logo i el text sàpiguen on són */
-    height: 125px;      /* Alçada per encabir-ho tot */
+    position: relative; /* "Ã€ncora" perquÃ¨ el logo i el text sÃ piguen on sÃ³n */
+    height: 125px;      /* AlÃ§ada per encabir-ho tot */
     outline: 0px solid red !important;
 }
 
@@ -81,7 +81,7 @@ a {
 
             .contenidor-logo {   /*   Contenidor   */
 
-                position: absolute; /* Es col·loca respecte a .capcalera-principal */
+                position: absolute; /* Es colÂ·loca respecte a .capcalera-principal */
                 top: 10px; 
                 left: 0;
                 width: 150px;
@@ -93,19 +93,433 @@ a {
                 width: 99%;
                 user-select: none;    /* Evita que el client seleccioni la imatge blava */
                 pointer-events: auto; /* Evita que el logo reaccioni a clics */
-                -webkit-touch-callout: none; /* BLOQUEJA el menú de "Guardar imatge" del mòbil */
+                -webkit-touch-callout: none; /* BLOQUEJA el menÃº de "Guardar imatge" del mÃ²bil */
                 outline: 0px solid green !important;
             }
 
-    /*________________________Text Capçalera_________________ */
+    /*________________________Text CapÃ§alera_________________ */
 
             .text-capcalera {   /*   Contenidor   */
                 width: 240px;
                 position: absolute;
-                top: 60px;    /* Distància des de dalt del pare */
-                left: 150px;   /* Distància des de l'esquerra del pare */
+                top: 60px;    /* DistÃ ncia des de dalt del pare */
+                left: 150px;   /* DistÃ ncia des de l'esquerra del pare */
                 outline: 0px solid pink !important;
             } 
+
+            .text-capcalera p {     /*   TEXT (p) */
+                font-size: 14px;
+                color: #111;
+                text-align: center;
+                margin: 0;
+                outline: 0px solid blue !important;
+            }
+
+            /* El span que hem creat per netejar l'style de l'HTML */     /*2ona linea del text*/
+            .subtitol-capcalera {
+                display: block;
+                text-align: center;
+            }
+
+/*///////////////////////////////////////   SEPARADORS HR    ////////////////////////////////*/
+
+.separador-hr {
+    border: none;
+    border-top: 1px solid var(--color-hr); /* Color taronja CadÃ­ */
+    max-width: var(--amplada-mobil);
+    width: 90%;
+    margin: 5px auto;
+    outline: 0px solid pink !important;
+}
+
+
+/*//////////////////////   BLOC 3 IMATGES (Index)    ////////////////////////////////////////////*/
+
+    .bloc-imatges {    /*   Contenidor   */
+        max-width: var(--amplada-mobil);
+        width: 90%;
+        margin: 10px auto;
+        display: flex; 
+        gap: 8px; 
+        align-items: stretch;
+        outline: 0px solid red !important;
+    }
+
+/*______________________COLUMNA ESQUERRA (Contenidor de les 2 petites)_____ */
+                .columna-esquerra {
+                    display: flex; 
+                    flex-direction: column; 
+                    width: 42%;
+                    gap: 8px; 
+                    height: 100%;
+                    outline: 0px solid blue !important;
+                }                                                                                               
+
+/*____________________ IMATGE GRAN A LA DRETA _______Contenidor...____*/
+                .imatge-dreta {
+                    display: flex; 
+                    width: 58%;
+                    height: 100%; 
+                    margin: 0px 0px;
+                    outline: 0px solid red !important;
+                }
+
+/*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
+                .bloc-imatge-inferior {
+                    max-width: var(--amplada-mobil);
+                    width: 90%;
+                    margin: 10px auto;
+                    display: block;
+                    outline: 0px solid brown !important;
+                }
+
+                /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
+                .item-horizontal {
+                    aspect-ratio: 7 / 4;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .item-horizontal img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+
+/*/////////////////////////   ESTIL DE LES IMATGES   (Index)   ///////////////////*/
+
+.imatge-categoria {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    outline: 0px solid orangered !important;
+}
+
+/*___________________________________ Asegurem que els enllaÃ§os siguin el contenidor dels textos _______*/
+.enllac-imatge-categoria {
+    position: relative; /* AixÃ² Ã©s l'Ã ncora pels textos */
+    display: block;
+    width: 100%;
+    box-shadow: -1px 2px 8px rgba(0, 0, 0, 0.8);
+    padding: 0px;
+    box-sizing: border-box; /* Molt important per les mides! */
+}
+
+/*___________________________________________ EFECTE VISUAL AL HOVER________________________________ */
+.enllac-imatge-categoria:hover img {
+    opacity: 0.85; 
+    transition: opacity 0.2s ease-in-out;
+}
+
+                /* Les fotos de la columna esquerra: aspect-ratio per escalar bÃ© */
+            .columna-esquerra .enllac-imatge-categoria {
+                aspect-ratio: 7 / 4;
+                width: 100%;
+            }
+
+            /* La foto de la dreta: ocupa tota l'alÃ§ada del pare */
+            .imatge-dreta .enllac-imatge-categoria {
+                height: 100%;
+            }
+
+/* ________________________________ Els textos flotants (Lletres blanques amb ombra, sense marc)_____________ */
+.etiqueta-categoria {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(255,255,0,1); /* Ombra perquÃ¨ es llegeixi bÃ© */
+    pointer-events: none;
+    z-index: 10;
+}
+
+
+/*////////////////////////////////   BLOC ENLLAÃ‡OS   //////////////////////////*/
+
+.bloc-enllacos {
+    max-width: var(--amplada-mobil);
+    width: 90%;
+    margin: 20px auto 10px auto; 
+    text-align: center;
+    outline: 0px solid pink !important; 
+}
+
+.bloc-enllacos p {
+    margin: 5px 0;
+    display: inline-block; 
+    padding: 0 10px;
+}
+
+.bloc-enllacos a {
+    color: var(--color-link); 
+    text-decoration: none; 
+    font-size: 14px;
+}
+
+.bloc-enllacos a:hover {
+    text-decoration: underline; 
+}
+
+/*__________________________ Estil per les icones petites de les Apps _______________________*/
+            .icona-app {
+                width: 24px;
+                height: auto;
+                vertical-align: middle;
+                margin-right: 8px;
+                display: inline-block;
+            }
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////-------------------- */
+/* ------------------------------- ESTILS PÃ€GINES INTERIORS (GALERIA I FITXA) ------------------------------------------------------ */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////-------------------- */
+
+
+/*//////////////////////////////   PÃ€GINES DE CATEGORIA  //////////////////////////////////////////////////////////// */
+
+.galeria-productes {        /* Contenidor sencer de la llista  */
+    max-width: var(--amplada-mobil);
+    width: 95%;
+    margin: 40px auto;
+    padding: 0px;
+    outline: 0px solid red !important;
+}
+
+/*_________________________TÃ­tol Categoria (Dinamitzat)____________________________*/
+
+            #titol-categoria, #contingut-fitxa h1 {
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-top: 7px;
+                margin-bottom: 5px;
+                font-size: 2rem;
+                font-weight: 350;
+                color: var(--text-noms);
+                letter-spacing: 1px;
+                text-align: center;
+                width: 100%;
+                outline: 0px solid cyan !important;
+            }
+
+            #titol-categoria::after, #contingut-fitxa h1::after {    /* La lÃ­nia decorativa que es crea sola */
+                content: "";
+                display: block;
+                width: 80px;
+                height: 1px;
+                background: var(--text-noms);
+                margin: 15px auto;
+            }
+
+/*______________________Bloc item sencer________________________________*/
+
+            .bloc-galeria-item {        /* Contenidor de cada fila de plat (Flex)  */
+                display: flex;
+                align-items: center;
+                width: 95%;
+                margin: 0 auto 15px auto; 
+                text-decoration: none;
+                color: #333;
+                background-color: rgba(231, 231, 231, 0.7);
+                box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                border: 1px solid #eee;
+                padding: 0;
+                overflow: hidden;
+                outline: 0px solid pink !important;
+            }
+
+    /*__________________________Imatge Miniatura__________________________*/
+
+                    .bloc-galeria-item img {
+                        width: 90px;
+                        height: 90px;
+                        min-width: 90px;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 8px;
+                        margin-right: 15px;
+                        margin-top: 5px; 
+                        margin-bottom: 5px;
+                        margin-left: 5px;
+                        outline: 0px solid chartreuse !important;
+                    }
+
+ /*__________________________Textos del Plat__________________________*/
+
+                        .detalls-producte {     /* Contenidor dret dels textos  */
+                            flex-grow: 1;
+                            padding: 10px;
+                            text-align: left;
+                        }
+
+                                .titol-item {           /* Nom del plat  */
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    color: var(--text-noms);
+                                    margin: 5px 0 0 0;
+                                    outline: 0px solid black !important;
+                                }
+
+                                .detalls-producte p {   /* DescripciÃ³ curta  */
+                                    font-size: 14px;
+                                    color: #666;
+                                    margin: 2px 0;
+                                    outline: 0px solid orange !important;
+                                }
+
+                                .preu {                 /* Preu (â‚¬)  */
+                                    display: block; 
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    color: #191970;
+                                    outline: 0px solid cyan !important;
+                                }
+
+
+/*/////////////////////////      MODAL (Fitxa del Producte)  ////////////////////////////////////////////////////// */
+
+#modal-detall {             /* Fons fosc (Overlay)  */
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contingut {          /* Caixa blanca central  */
+    background-color: #fff;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.tancar-modal {             /* BotÃ³ de tancar (X)  */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0 0 5px #000;
+    z-index: 10;
+}
+
+.modal-contingut img {      /* Imatge gran del modal  */
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+/*/////////////////////////  SPINNER I CÃ€RREGA  ////////////////////////////////////////////////////////////// */
+
+#titol-categoria.loading::after, 
+#contingut-fitxa h1.loading::after {    /* L'anell giratori  */
+    content: "" !important;
+    display: block !important;
+    width: 34px;
+    height: 34px;
+    margin: 20px auto 0;
+    border-radius: 50%;
+    background: conic-gradient(#4285f4, #ea4335, #fbbc05, #ffffff, #34a853, #4285f4);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
+    animation: girar 1s linear infinite;
+    visibility: visible !important;
+}
+
+@keyframes girar {          /* AnimaciÃ³ de rotaciÃ³  */
+    to { transform: rotate(360deg); }
+}
+
+.esperant-validacio {       /* Estat abans de carregar  */
+    visibility: hidden !important;
+    opacity: 0;
+}
+
+.revelat-final {            /* Estat quan les dades ja estan llestes  */
+    visibility: visible !important;
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
+}
+
+
+/*/////////////////////////  DECORACIÃ“ (Icona Ren/Nadal)  //////////////////////////////////////////////////// */
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0%;
+    left: calc(50% + (var(--amplada-mobil) / 2)); 
+    transform: translateX(-100%);
+    width: 300px;
+    height: 300px;
+    background-image: url('..Icon/');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right top;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+
+/*/////////////////////////  ESTILS MODO EDICIO  ////////////////////////////////////////////////////////////// */
+
+body.admin-mode-active {    /* Marc d'avÃ­s mode EDICIO  */
+    border: 5px solid rgb(246, 188, 81) !important; 
+}
+
+.item-ocult {               /* Plats amb Visible: False  */
+    opacity: 0.5; 
+    filter: grayscale(100%); 
+    border: 2px dashed gray; 
+}
+
+#admin-controls, #btn-guardar-admin {   /* Controles ocults per defecte  */
+    display: none; 
+}
+
+
+/*///////////////////////////////////  IPhone   ////////////////////////////////////////////////////*/
+
+/* Eliminar menÃºs de guardado de imagen en iPhone */
+.logo {
+    -webkit-touch-callout: none!important; /* Desactiva el menÃº 'Guardar imagen' */
+    -webkit-user-select: none!important;    /* Evita selecciÃ³n de imagen */
+    user-select: none!important;
+    -webkit-tap-highlight-color: transparent; /* Elimina el recuadro gris al tocar */
+}
+
+/* Forzar que el iPhone reconozca los enlaces al primer toque */
+.contenidor-categoria,.boto-pdf,.logo {
+    cursor: pointer!important; /* Indica a Safari que es un elemento interactivo */
+}
+
+
+/* 1. REGLA GENERAL: Escondemos todo lo que sea del admin */
+.controles-admin {
+    display: none !important;
+}
+
+/* 2. EXCEPCIÃ“N: Si el body tiene la etiqueta de admin, lo mostramos */
+.admin-mode-active .controles-admin {
+    display: flex !important;
+}            } 
 
             .text-capcalera p {     /*   TEXT (p) */
                 font-size: 14px;
