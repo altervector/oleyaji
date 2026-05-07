@@ -178,7 +178,7 @@ a {
 
                 /* Forcem que la caixa de Postres sigui igual que el conjunt de dalt */
                 .item-horizontal {
-                    height: 297px !important; 
+                    height: 100% !important; 
                     margin-bottom:10px;
                 }
 
@@ -229,7 +229,7 @@ a {
 }
                 /* 2. Apliquem els 97px NOMÉS a les fotos de la columna esquerra */
             .columna-esquerra .enllac-imatge-categoria {
-                height: 296px;
+                height: 100%;
             }
 
             /* 3. Apliquem el 100% NOMÉS a la foto de la dreta */
