@@ -5,7 +5,7 @@
     
     
     /* Medidas Maestras */
-    /*ok*/--amplada-mobil:860px;
+    /*ok*/--amplada-mobil: 400px;
     
     /* Fondos */
     /*ok*/--bg-html: #deccba;        /* Fondo arena total */
@@ -41,7 +41,7 @@ html {
 }
 
 body {
-    max-width: device-width; !important;
+    max-width: var(--amplada-mobil);
     margin: 0 auto !important;
     
     background-color: var(--bg-body) !important; /* Para que deje ver el fondo del html */
@@ -136,7 +136,7 @@ a {
 /*//////////////////////   BLOC 3 IMATGES (Index)    ////////////////////////////////////////////*/
 
     .bloc-imatges {    /*   Contenidor   */
-        max-width:device-width;
+        max-width:var(--amplada-mobil);
         width: 90%;
         margin: 10px auto;
         height: 600px; 
@@ -169,7 +169,7 @@ a {
 
 /*______________________Bloc inferior (Postres i  Mapa)_________Contenidor...____________ */
                 .bloc-imatge-inferior {
-                    max-width:device-width;
+                    max-width:var(--amplada-mobil);
                     width: 90%;
                     margin: 10px auto; /* Donem espai (10px) perquè no s'enganxi a dalt */
                     display: block;
