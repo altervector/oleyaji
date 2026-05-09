@@ -74,7 +74,7 @@ a {
     margin: 5px auto;  /* Centrat a la pantalla */
     position: relative; /* "Ã€ncora" perquÃ¨ el logo i el text sÃ piguen on sÃ³n */
     height: 125px;      /* AlÃ§ada per encabir-ho tot */
-    outline: 0px solid red !important;  /*xxx*/
+    outline: 4px solid red !important;  /*xxx*/
 }
 
     /*__________________________Logo__________________________*/
