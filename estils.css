@@ -47,9 +47,10 @@ body {
     background-color: var(--bg-body) !important; /* Para que deje ver el fondo del html */
 
     min-height: 100vh;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Opcional: le da un toque profesional al marco */
+    /*box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Opcional: le da un toque profesional al marco */
     overflow-x: hidden; /* Evita el moviment lateral al mÃ²bil */
     position: relative;
+    outline: 4px solid red !important;
 }   
 
 img {
