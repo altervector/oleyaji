@@ -35,7 +35,7 @@
 
 }
 html {
-    background-image: url("images/background.jpg");
+    background-image: url("images/Zbackground.jpg");
     box-sizing: border-box; /* Evita que els marges eixamplin les caixes */
     font-family: Arial, sans-serif;
 }
@@ -50,7 +50,7 @@ body {
     /*box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Opcional: le da un toque profesional al marco */
     overflow-x: hidden; /* Evita el moviment lateral al mÃ²bil */
     position: relative;
-    outline: 4px solid red !important;
+    outline: 0px solid red !important;
 }   
 
 img {
