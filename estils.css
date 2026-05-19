@@ -1,18 +1,22 @@
-/*/////////////////////////   RESET I BASES    //////////////////////////////////////////////////////////// */
+/* ============================================================
+   ESTILS.CSS - Plantilla moderna per a negocis
+   Paleta: Cap
+   ============================================================ */
+
+
+/* ─── 1. VARIABLES ────────────────────────────────────────── */
 
 :root {
-    /* --- CONFIGURACIÃ“ DE SEGURETAT --- */
-    
-    
+       
     /* Medidas Maestras */
     /*ok--amplada-mobil:/* 800px;  /*xxx-400*/
     
     /* Fondos */
     /*ok*/--bg-html: url(images/background.jpg); /*#deccba;        /* Fondo arena total */
-    /*ok*/--bg-htmledit: rgba(250, 250, 123, 0.963);        /* Fondo groc */
-    /*ok*/--bg-body: transparent;      /* El cuerpo es transparente para ver el arena */
-    /*ok*/--bg-modaledit: rgba(48, 127, 201, 0.715);       /* Fondo del modal Edicion*/
-    /*ok*/--bg-modalnew: rgba(40, 167, 69, 0.8);        /* Fondo del modal Nuevo*/
+    /*ok*/--bg-htmledit: rgba(250, 250, 123, 0.963);            /* Fondo groc Mode Admin*/
+    /*ok*/--bg-body: transparent;                                /* El body és transp per veure bg-html */
+    /*ok*/--bg-modaledit: rgba(48, 127, 201, 0.715);          /* Fondo del modal Edició*/
+    /*ok*/--bg-modalnew: rgba(40, 167, 69, 0.8);             /* Fondo del modal Nou*/
     
     /* Textos */
     /*ok*/--text-noms: #0056b3;      /* Azul  para nombres y tÃ­tulos */
