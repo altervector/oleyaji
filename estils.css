@@ -35,7 +35,7 @@
 
 }
 html {
-    background-color: var(--bg-html);
+    background-image: url("images/background.jpg");
     box-sizing: border-box; /* Evita que els marges eixamplin les caixes */
     font-family: Arial, sans-serif;
 }
