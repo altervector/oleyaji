@@ -1,5 +1,5 @@
 (function() {
-    const repoBase = CONFIG.BASE_URL;
+    const repoBase = CONFIG.REPO_URL;
 
     const htmlindex = `
     <div class="bloc-imatges">

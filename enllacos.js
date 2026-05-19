@@ -7,12 +7,12 @@
                     <a href="javascript:void(0)" 
                        onclick="window.open('https://res.cloudinary.com/deopqx65a/raw/upload/Carta_OleyAji.pdf?v=' + Date.now(), '_blank')" 
                        class="boto-pdf">
-                        <img src="${CONFIG.BASE_URL}Icon/Icopdf.png" alt="Pdf" class="icona-app">Descarrèga la Carta al complet (PDF)
+                        <img src="${CONFIG.REPO_URL}Icon/Icopdf.png" alt="Pdf" class="icona-app">Descarrèga la Carta al complet (PDF)
                     </a>
                 </p>
-                <p><a href="https://www.instagram.com/oleyajivilafranca" target="_blank"><img src="${CONFIG.BASE_URL}Icon/Icoinsta.png" alt="Instagram" class="icona-app">Instagram: @oleyajivilafranca</a></p>
-                <p><a href="tel:9344008645"><img src="${CONFIG.BASE_URL}Icon/Icophone.png" alt="Reserves" class="icona-app">Reservas</a></p>
-                <p><a href="mailto:oleyaji@altervector.com"> <img src="${CONFIG.BASE_URL}Icon/Icomail.png" alt="e-mail" class="icona-app">Envia un correu</a></p>
+                <p><a href="https://www.instagram.com/oleyajivilafranca" target="_blank"><img src="${CONFIG.REPO_URL}Icon/Icoinsta.png" alt="Instagram" class="icona-app">Instagram: @oleyajivilafranca</a></p>
+                <p><a href="tel:9344008645"><img src="${CONFIG.REPO_URL}Icon/Icophone.png" alt="Reserves" class="icona-app">Reservas</a></p>
+                <p><a href="mailto:oleyaji@altervector.com"> <img src="${CONFIG.REPO_URL}Icon/Icomail.png" alt="e-mail" class="icona-app">Envia un correu</a></p>
             </div>
             <hr class="separador-hr">
             <hr class="separador-hr">
