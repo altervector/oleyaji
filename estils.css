@@ -36,9 +36,12 @@
 }
 html {
     background-image: var(--bg-html);
-    box-sizing: border-box; /* Evita que els marges eixamplin les caixes */
-    font-family: Arial, sans-serif;
+    background-attachment: fixed;
+    background-size: cover;                    
+    background-position: center;
+    min-height: 100%;
 }
+
 
 body {
     max-width: var(--amplada-mobil);
