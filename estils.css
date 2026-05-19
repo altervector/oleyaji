@@ -8,7 +8,7 @@
     /*ok--amplada-mobil:/* 800px;  /*xxx-400*/
     
     /* Fondos */
-    /*ok*/--bg-html: url("images/background.jpg"); /*#deccba;        /* Fondo arena total */
+    /*ok*/--bg-html: url(images/background.jpg); /*#deccba;        /* Fondo arena total */
     /*ok*/--bg-htmledit: rgba(250, 250, 123, 0.963);        /* Fondo groc */
     /*ok*/--bg-body: transparent;      /* El cuerpo es transparente para ver el arena */
     /*ok*/--bg-modaledit: rgba(48, 127, 201, 0.715);       /* Fondo del modal Edicion*/
