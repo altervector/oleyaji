@@ -1,17 +1,28 @@
 const CONFIG = {
 
 
+   // 1. NEGOCI
+    NOM:            "Nom",
+    LOGO:           "Icon/Default.png",
+    SLOGAN:         "El teu eslògan aquí",
+    TELEFON:        "+34 000 000 000",
+    EMAIL:          "mail@altervector.com",
+    ADRECA:         "Carrer, número, població",
+    INSTAGRAM:      "https://www.instagram.com/",
+    FACEBOOK:       "https://www.facebook.com/",
+    EMAIL_SUPORT:   "suport@altervector.com",
 
-    // 1. RUTA  GITHUB
-    REPO_URL: "https://altervector.github.io/oleyaji/",
 
-    // 2. SEGURETAT (Tu lista exacta del index)
-    SITIOS_SEGUROS: ["altervector.com", "pages.dev", "netlify.app", "localhost", "127.0.0.1"],
-    URL_OFICIAL: "https://oleyaji.altervector.com",
-    BASE_WORKER: "https://oleyaji.altervector.workers.dev",
+    // 2. RUTES
+    REPO_URL:       "https://altervector.github.io/oleyaji/",
+    BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
+    URL_OFICIAL:    "https://oleyaji.altervector.com",
 
 
-    EMAIL_SUPORT: "suport@altervector.com",
+    // 3. SEGURETAT (Tu lista exacta del index)
+    SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "netlify.app", "localhost", "127.0.0.1"],
+    SITIOS_SEGUROS2: ["localhost", "127.0.0.1", "altervector.github.io","agora.altervector.com", "nouprojecte.pages.dev"],
+
 
     // 4. CLOUDINARY
     CLOUDI_NAME: "deopqx65a",

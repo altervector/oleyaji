@@ -4,6 +4,7 @@
 
     // Ara aquesta constant no xocarà amb les dels altres scripts
     const repoBase = CONFIG.REPO_URL;
+    const logotipo = CONFIG.LOGO;
 
     let favicon = document.querySelector("link[rel*='icon']");
     if (!favicon) {
@@ -11,7 +12,7 @@
         favicon.rel = 'icon';
         document.head.appendChild(favicon);
     }
-    favicon.href = repoBase + 'Icon/logo.jpg';
+    favicon.href = repoBase + logotipo;
 
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -26,7 +27,7 @@
         const headerHTML = `
             <div class="capcalera-principal">
                 <div class="contenidor-logo">
-                    <img src="${repoBase}Icon/logotrans.png" alt="Logo Olé y Ají" class="logo">
+                    <img src="${repoBase}${logotipo}" alt="Disponible" class="logo">
                 </div>
                 <div class="text-capcalera">
                     <p>
