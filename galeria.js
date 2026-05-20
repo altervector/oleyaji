@@ -24,7 +24,7 @@
         .then(records => {
             let html = '';
             const baseCloudy = `https://res.cloudinary.com/${CONFIG.CLOUDI_NAME}/image/upload/f_auto,q_auto/`;
-            const fotoDefault = `${CONFIG.REPO_URL}images/Default.png`;
+            const fotoDefault = `${CONFIG.BASE_URL}images/Default.png`;
 
             records.forEach(r => {
                 const f = r.fields;

@@ -16,7 +16,7 @@
     }
 
     const now = new Date().getTime();
-    const repoBase = CONFIG.REPO_URL;
+    const repoBase = CONFIG.BASE_URL;
 
     // 2. CSS
     const css = document.createElement("link");

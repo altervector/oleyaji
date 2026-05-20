@@ -3,7 +3,7 @@
     document.title = "Olé y Ají - Restaurant i Tapes";
 
     // Ara aquesta constant no xocarà amb les dels altres scripts
-    const repoBase = CONFIG.REPO_URL;
+    const repoBase = CONFIG.BASE_URL;
     const logotipo = CONFIG.LOGO;
 
     let favicon = document.querySelector("link[rel*='icon']");

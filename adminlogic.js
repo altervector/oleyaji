@@ -118,7 +118,7 @@
     /*/////////////////////////  3. MODAL PLAT NOU (ADMIN)  ///////// */
 
     window.obrirModalNuevo = function() {
-        const fotoDefault = `${CONFIG.REPO_URL}images/Default.png`;
+        const fotoDefault = `${CONFIG.BASE_URL}images/Default.png`;
         const urlParams = new URLSearchParams(window.location.search);
         const categoriaActual = urlParams.get('Categoria') || '';
         const contingut = document.getElementById('contingut-dinamic-modal');
