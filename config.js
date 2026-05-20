@@ -20,9 +20,8 @@ const CONFIG = {
 
 
     // 3. SEGURETAT (Tu lista exacta del index)
-    SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "netlify.app", "localhost", "127.0.0.1"],
-    SITIOS_SEGUROS2: ["localhost", "127.0.0.1", "altervector.github.io","agora.altervector.com", "nouprojecte.pages.dev"],
-
+    SITIOS_SEGUROS:  ["altervector.com", "pages.dev", "altervector.github.io", "localhost", "127.0.0.1"],
+ 
 
     // 4. CLOUDINARY
     CLOUDI_NAME: "deopqx65a",
