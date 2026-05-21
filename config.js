@@ -3,7 +3,7 @@ const CONFIG = {
 
    // 1. NEGOCI
     NOM:            "Nom",
-    LOGO:           "Icon/Default.png",
+    LOGO:           "Icon/logotrans.png",
     SLOGAN:         "El teu eslògan aquí",
     TELEFON:        "+34 000 000 000",
     EMAIL:          "mail@altervector.com",
