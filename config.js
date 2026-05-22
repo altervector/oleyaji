@@ -14,10 +14,10 @@ const CONFIG = {
 
 
     // 2. RUTES
-    REPO_URL:       "https://altervector.github.io/oleyaji/",
+    REPO_URL:       "https://altervector.github.io/disseny_simple/",
     BASE_URL:       "./",
     BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
-    URL_OFICIAL:    "https://oleyaji.altervector.com",
+    URL_OFICIAL:    "https://disseny_simple.altervector.com",
 
 
     // 3. SEGURETAT (Tu lista exacta del index)
