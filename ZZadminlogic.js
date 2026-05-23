@@ -1,7 +1,6 @@
 /* ============================================================
-   ADMINLOGIC.JS - Panel d'administració de Olé y Ají
+   ADMINLOGIC.JS - Panel d'administració de agora
    Depèn de: config.js, api.js
-   Columnes: Visible, Nom, Preu, Categoria, Descripcio, Foto
    ============================================================ */
 
 (function() {
@@ -28,7 +27,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 700px;
+            min-width: 900px;
         }
 
         thead tr {
@@ -91,12 +90,10 @@
             accent-color: #c8973a;
         }
 
-        .col-nom       { min-width: 160px; }
-        .col-preu      { width: 70px; }
-        .col-check     { width: 80px; text-align: center; }
-        .col-categoria { width: 110px; }
-        .col-descripcio{ min-width: 180px; }
-        .col-foto      { min-width: 160px; }
+        .col-nom { min-width: 160px; }
+        .col-preu { width: 70px; }
+        .col-check { width: 80px; text-align: center; }
+        .col-seccio { width: 110px; }
 
         /* ─── BARRA STICKY ─── */
         #admin-barra {
@@ -191,9 +188,9 @@
     // ─── ACTUALITZAR BARRA ───────────────────────────────────
     const actualitzarBarra = () => {
         const total = Object.values(window.CANVIS_PENDENTS).reduce((acc, dades) => acc + Object.keys(dades).length, 0);
-        const btnGuardar  = document.getElementById('btn-guardar');
+        const btnGuardar = document.getElementById('btn-guardar');
         const btnDescartar = document.getElementById('btn-descartar');
-        const comptador   = document.getElementById('admin-comptador');
+        const comptador = document.getElementById('admin-comptador');
         if (!btnGuardar) return;
 
         if (total > 0) {
@@ -208,7 +205,7 @@
     };
 
     // ─── MARCAR CEL·LA COM A PENDENT ─────────────────────────
-    const marcarPendent   = (el) => el.classList.add('pendent');
+    const marcarPendent = (el) => el.classList.add('pendent');
     const desmarcarPendents = () => {
         document.querySelectorAll('.pendent').forEach(el => el.classList.remove('pendent'));
     };
@@ -224,7 +221,7 @@
 
     // ─── GUARDAR TOT (PUSH PER LOTS DE 10) ───────────────────
     const guardarTot = async () => {
-        const estat   = document.getElementById('admin-estat');
+        const estat = document.getElementById('admin-estat');
         const entrades = Object.entries(window.CANVIS_PENDENTS);
         if (entrades.length === 0) return;
 
@@ -271,20 +268,17 @@
 
     // ─── CREAR FILA ──────────────────────────────────────────
     const crearFila = (r, esNova = false) => {
-        const f  = r.fields || {};
+        const f = r.fields || {};
         const id = r.id || null;
 
-        // Categoria és un array a Airtable, agafem el primer valor
-        const getCategoria = (c) => Array.isArray(c) ? c[0] : (c || 'Plats');
+        const getSeccio = (s) => Array.isArray(s) ? s[0] : (s || '');
 
         const fila = document.createElement('tr');
         if (id) fila.setAttribute('data-id', id);
         if (esNova) fila.classList.add('fila-nova');
 
-        // Categories disponibles a Olé y Ají
-        const categories = ['Plats', 'Tapas', 'Postres', 'Begudes'];
+        const seccions = ['Entrants', 'Primer', 'Segon', 'Postres', 'Vins', 'Peu'];
 
-        // ─── Helpers d'esdeveniments ────────────────────────
         const onBlurText = (camp, el) => {
             const valorOriginal = el.value;
             el.addEventListener('blur', () => {
@@ -317,29 +311,26 @@
             const valorOriginal = el.value;
             el.addEventListener('change', () => {
                 if (el.value !== valorOriginal) {
-                    // Categoria s'envia com a array, que és com ho espera Airtable
                     acumularCanvi(id, { [camp]: [el.value] }, el);
                 }
             });
         };
 
-        // ─── Visible ────────────────────────────────────────
+        // Visible
         const cbVisible = document.createElement('input');
-        cbVisible.type    = 'checkbox';
+        cbVisible.type = 'checkbox';
         cbVisible.checked = f.Visible === true;
         onChangeCheck('Visible', cbVisible);
         const tdVisible = document.createElement('td');
         tdVisible.className = 'col-check';
         tdVisible.appendChild(cbVisible);
 
-        // ─── Nom ─────────────────────────────────────────────
+        // Nom
         const inputNom = document.createElement('input');
-        inputNom.type        = 'text';
-        inputNom.value       = f.Nom || '';
+        inputNom.type = 'text';
+        inputNom.value = f.Nom || '';
         inputNom.placeholder = esNova ? 'Escriu el nom i prem Tab...' : '';
-
         if (esNova) {
-            // La fila nova crea el registre a Airtable en fer blur
             inputNom.addEventListener('blur', async () => {
                 if (!inputNom.value.trim()) return;
                 const estat = document.getElementById('admin-estat');
@@ -349,10 +340,10 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            Nom:       inputNom.value.trim(),
-                            Preu:      0,
-                            Categoria: ['Plats'],
-                            Visible:   false
+                            Nom: inputNom.value.trim(),
+                            Preu: 0,
+                            Seccio: ['Entrants'],
+                            Visible: false
                         })
                     });
                     if (res.ok) {
@@ -368,64 +359,88 @@
         } else {
             onBlurText('Nom', inputNom);
         }
-
         const tdNom = document.createElement('td');
         tdNom.className = 'col-nom';
         tdNom.appendChild(inputNom);
 
-        // ─── Preu ─────────────────────────────────────────────
+        // Preu
         const inputPreu = document.createElement('input');
-        inputPreu.type  = 'number';
-        inputPreu.step  = '0.01';
+        inputPreu.type = 'number';
+        inputPreu.step = '0.01';
         inputPreu.value = f.Preu || 0;
         onBlurNum('Preu', inputPreu);
         const tdPreu = document.createElement('td');
         tdPreu.className = 'col-preu';
         tdPreu.appendChild(inputPreu);
 
-        // ─── Categoria (select) ───────────────────────────────
+        // Menu_Diari
+        const cbDiari = document.createElement('input');
+        cbDiari.type = 'checkbox';
+        cbDiari.checked = f.Menu_Diari === true;
+        onChangeCheck('Menu_Diari', cbDiari);
+        const tdDiari = document.createElement('td');
+        tdDiari.className = 'col-check';
+        tdDiari.appendChild(cbDiari);
+
+        // Menu_CDS
+        const cbCDS = document.createElement('input');
+        cbCDS.type = 'checkbox';
+        cbCDS.checked = f.Menu_CDS === true;
+        onChangeCheck('Menu_CDS', cbCDS);
+        const tdCDS = document.createElement('td');
+        tdCDS.className = 'col-check';
+        tdCDS.appendChild(cbCDS);
+
+        // Menu_Grups
+        const cbGrups = document.createElement('input');
+        cbGrups.type = 'checkbox';
+        cbGrups.checked = f.Menu_Grups === true;
+        onChangeCheck('Menu_Grups', cbGrups);
+        const tdGrups = document.createElement('td');
+        tdGrups.className = 'col-check';
+        tdGrups.appendChild(cbGrups);
+
+        // Seccio
         const sel = document.createElement('select');
-        categories.forEach(c => {
+        seccions.forEach(s => {
             const opt = document.createElement('option');
-            opt.value       = c;
-            opt.textContent = c;
-            if (getCategoria(f.Categoria) === c) opt.selected = true;
+            opt.value = s;
+            opt.textContent = s;
+            if (getSeccio(f.Seccio) === s) opt.selected = true;
             sel.appendChild(opt);
         });
-        onChangeSel('Categoria', sel);
-        const tdCategoria = document.createElement('td');
-        tdCategoria.className = 'col-categoria';
-        tdCategoria.appendChild(sel);
+        onChangeSel('Seccio', sel);
+        const tdSeccio = document.createElement('td');
+        tdSeccio.className = 'col-seccio';
+        tdSeccio.appendChild(sel);
 
-        // ─── Descripcio ───────────────────────────────────────
-        const inputDesc = document.createElement('input');
-        inputDesc.type        = 'text';
-        inputDesc.value       = f.Descripcio || '';
-        inputDesc.placeholder = esNova ? '' : '';
-        onBlurText('Descripcio', inputDesc);
-        const tdDesc = document.createElement('td');
-        tdDesc.className = 'col-descripcio';
-        tdDesc.appendChild(inputDesc);
+        // Carta
+        const cbCarta = document.createElement('input');
+        cbCarta.type = 'checkbox';
+        cbCarta.checked = f.Carta === true;
+        onChangeCheck('Carta', cbCarta);
+        const tdCarta = document.createElement('td');
+        tdCarta.className = 'col-check';
+        tdCarta.appendChild(cbCarta);
 
-        // ─── Foto (ruta Cloudinary, ex: "productos/nom-plat") ─
-        // S'emmagatzema el primer element de l'array, o el valor directe
-        const getFoto = (foto) => Array.isArray(foto) ? foto[0] : (foto || '');
-        const inputFoto = document.createElement('input');
-        inputFoto.type        = 'text';
-        inputFoto.value       = getFoto(f.Foto);
-        inputFoto.placeholder = 'productos/nom-imatge';
-        onBlurText('Foto', inputFoto);
-        const tdFoto = document.createElement('td');
-        tdFoto.className = 'col-foto';
-        tdFoto.appendChild(inputFoto);
+        // Vins
+        const cbVins = document.createElement('input');
+        cbVins.type = 'checkbox';
+        cbVins.checked = f.Vins === true;
+        onChangeCheck('Vins', cbVins);
+        const tdVins = document.createElement('td');
+        tdVins.className = 'col-check';
+        tdVins.appendChild(cbVins);
 
-        // ─── Afegir columnes a la fila ────────────────────────
         fila.appendChild(tdVisible);
         fila.appendChild(tdNom);
         fila.appendChild(tdPreu);
-        fila.appendChild(tdCategoria);
-        fila.appendChild(tdDesc);
-        fila.appendChild(tdFoto);
+        fila.appendChild(tdDiari);
+        fila.appendChild(tdCDS);
+        fila.appendChild(tdGrups);
+        fila.appendChild(tdSeccio);
+        fila.appendChild(tdCarta);
+        fila.appendChild(tdVins);
 
         return fila;
     };
@@ -468,11 +483,11 @@
         const fer_login = async () => {
             const input = document.getElementById('login-input');
             const error = document.getElementById('login-error');
-            const clau  = input.value.trim();
+            const clau = input.value.trim();
             if (!clau) return;
             error.textContent = '⏳ Verificant...';
             try {
-                const res  = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
+                const res = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
                 const text = await res.text();
                 if (text.trim() === 'OK') {
                     sessionStorage.setItem('admin_clau', clau);
@@ -518,9 +533,12 @@
                         <th class="col-check">Visible</th>
                         <th class="col-nom">Nom</th>
                         <th class="col-preu">Preu</th>
-                        <th class="col-categoria">Categoria</th>
-                        <th class="col-descripcio">Descripció</th>
-                        <th class="col-foto">Foto (Cloudinary)</th>
+                        <th class="col-check">Diari</th>
+                        <th class="col-check">CDS</th>
+                        <th class="col-check">Grups</th>
+                        <th class="col-seccio">Secció</th>
+                        <th class="col-check">Carta</th>
+                        <th class="col-check">Vins</th>
                     </tr>
                 </thead>
                 <tbody id="admin-tbody"></tbody>
@@ -535,13 +553,12 @@
             if (Object.keys(window.CANVIS_PENDENTS).length > 0) descartarCanvis();
         });
 
-        const res  = await fetch(CONFIG.BASE_WORKER);
+        const res = await fetch(CONFIG.BASE_WORKER);
         const data = await res.json();
-        registres  = data;
+        registres = data;
 
         const tbody = document.getElementById('admin-tbody');
         registres.forEach(r => tbody.appendChild(crearFila(r)));
-        // Fila buida a dalt per crear nous plats
         tbody.prepend(crearFila({ fields: {}, id: null }, true));
 
         document.body.style.opacity = '1';
@@ -552,7 +569,7 @@
         const clau = sessionStorage.getItem('admin_clau');
         if (clau) {
             const resLogin = await fetch(`${CONFIG.BASE_WORKER}/login?p=${encodeURIComponent(clau)}`);
-            const text     = await resLogin.text();
+            const text = await resLogin.text();
             if (text.trim() === 'OK') {
                 mostrarTaula();
                 return;
