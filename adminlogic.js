@@ -61,10 +61,6 @@
             background: #2c3e20;
         }
 
-        tbody tr.fila-nova {
-            background: #1a2a1a;
-        }
-
         input[type="text"],
         input[type="number"],
         select {
@@ -120,6 +116,22 @@
             gap: 10px;
             padding: 8px 10px;
             margin: -20px -20px 10px -20px;
+        }
+
+        #btn-nou {
+            background: none;
+            color: #c8973a;
+            border: 1px solid #c8973a;
+            padding: 6px 16px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #btn-nou:hover {
+            background: #c8973a;
+            color: #1a1a2e;
         }
 
         #btn-guardar {
@@ -182,7 +194,6 @@
             font-weight: bold;
             color: #c8973a;
             letter-spacing: 1px;
-            border: 0px solid #c8973a;
             padding: 6px 16px;
             pointer-events: none;
         }
@@ -208,7 +219,6 @@
             border-color: #c8973a;
         }
 
-        /* Placeholder quan no hi ha foto */
         .foto-buit {
             width: 48px;
             height: 48px;
@@ -228,7 +238,6 @@
             color: #c8973a;
         }
 
-        /* Missatge d'estat de pujada dins la cel·la */
         .foto-estat {
             font-size: 10px;
             color: #c8973a;
@@ -236,19 +245,169 @@
             margin-top: 3px;
             min-height: 14px;
         }
+
+        /* ─── MODAL NOU PLAT ─── */
+        #modal-nou-plat {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal-nou-plat .modal-caixa {
+            background: #0d0d1a;
+            border: 1px solid #c8973a;
+            width: 90%;
+            max-width: 420px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        #modal-nou-plat h2 {
+            color: #c8973a;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        #modal-nou-plat input[type="text"],
+        #modal-nou-plat input[type="number"],
+        #modal-nou-plat select,
+        #modal-nou-plat textarea {
+            width: 100%;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #eee;
+            font-size: 13px;
+            padding: 8px 10px;
+            outline: none;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 0;
+        }
+
+        #modal-nou-plat input:focus,
+        #modal-nou-plat select:focus,
+        #modal-nou-plat textarea:focus {
+            border-color: #c8973a;
+        }
+
+        #modal-nou-plat textarea {
+            height: 70px;
+            resize: vertical;
+        }
+
+        #modal-nou-plat .modal-fila {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #modal-nou-plat .modal-boto-crear {
+            background: #2c3e35;
+            color: #555;
+            border: 1px solid #555;
+            padding: 10px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: not-allowed;
+            width: 100%;
+        }
+
+        #modal-nou-plat .modal-boto-crear.actiu {
+            color: #c8973a;
+            border-color: #c8973a;
+            cursor: pointer;
+        }
+
+        #modal-nou-plat .modal-boto-crear.actiu:hover {
+            background: #c8973a;
+            color: #1a1a2e;
+        }
+
+        #modal-nou-plat .modal-boto-cancel {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 12px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+            padding: 6px;
+        }
+
+        #modal-nou-plat .modal-boto-cancel:hover {
+            color: #e74c3c;
+        }
+
+        /* ─── ZONA FOTO DEL MODAL ─── */
+        #modal-foto-zona {
+            width: 100%;
+            height: 160px;
+            background: #1a1a2e;
+            border: 1px dashed #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        #modal-foto-zona:hover {
+            border-color: #c8973a;
+        }
+
+        #modal-foto-zona img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #modal-foto-zona .foto-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        #modal-foto-zona .foto-placeholder span {
+            font-size: 32px;
+        }
+
+        #modal-foto-estat {
+            font-size: 11px;
+            color: #c8973a;
+            text-align: center;
+            min-height: 16px;
+            letter-spacing: 1px;
+        }
     `;
     document.head.appendChild(estils);
 
     // ─── VARIABLES ───────────────────────────────────────────
     let registres = [];
     window.CANVIS_PENDENTS = {};
+    let nomFotoNouPlat = ''; // foto pujada al modal fins que es crea el registre
 
     // ─── ACTUALITZAR BARRA ───────────────────────────────────
     const actualitzarBarra = () => {
         const total = Object.values(window.CANVIS_PENDENTS).reduce((acc, dades) => acc + Object.keys(dades).length, 0);
-        const btnGuardar  = document.getElementById('btn-guardar');
+        const btnGuardar   = document.getElementById('btn-guardar');
         const btnDescartar = document.getElementById('btn-descartar');
-        const comptador   = document.getElementById('admin-comptador');
+        const comptador    = document.getElementById('admin-comptador');
         if (!btnGuardar) return;
 
         if (total > 0) {
@@ -263,7 +422,7 @@
     };
 
     // ─── MARCAR CEL·LA COM A PENDENT ─────────────────────────
-    const marcarPendent   = (el) => el.classList.add('pendent');
+    const marcarPendent     = (el) => el.classList.add('pendent');
     const desmarcarPendents = () => {
         document.querySelectorAll('.pendent').forEach(el => el.classList.remove('pendent'));
     };
@@ -279,7 +438,7 @@
 
     // ─── GUARDAR TOT (PUSH PER LOTS DE 10) ───────────────────
     const guardarTot = async () => {
-        const estat   = document.getElementById('admin-estat');
+        const estat    = document.getElementById('admin-estat');
         const entrades = Object.entries(window.CANVIS_PENDENTS);
         if (entrades.length === 0) return;
 
@@ -324,50 +483,38 @@
     };
 
 
-    // ─── GESTIÓ DE FOTOS (CLOUDINARY) ────────────────────────
+    // ─── GESTIÓ DE FOTOS — TAULA ─────────────────────────────
 
-    // Construeix la URL de previsualització a partir del nom guardat a Airtable
-    // Ex: "productos/nom-plat.jpg" → URL completa de Cloudinary
     const urlThumb = (nomFoto) => {
         if (!nomFoto) return '';
-        // Si ja és una URL completa, la retornem tal qual
         if (nomFoto.startsWith('http')) return nomFoto;
         return `https://res.cloudinary.com/${CONFIG.CLOUDI_NAME}/image/upload/w_100,c_fill/${nomFoto}`;
     };
 
-    // Gestiona la selecció d'un arxiu: mostra preview local i canvia el botó a "Confirmar"
     const prepararSubidaFoto = (input, id, tdFoto) => {
         if (!input.files || !input.files[0]) return;
         const arxiu = input.files[0];
-        const nomOriginal = arxiu.name;
         const reader = new FileReader();
-
         reader.onload = (e) => {
-            // Mostrem preview local mentre es confirma
             const thumb = tdFoto.querySelector('.foto-thumb, .foto-buit');
             if (thumb) thumb.src = e.target.result;
-
             const estat = tdFoto.querySelector('.foto-estat');
             if (estat) {
                 estat.textContent = '💾 Confirmar?';
                 estat.style.cursor = 'pointer';
-                estat.onclick = () => executarSubidaFoto(id, e.target.result, nomOriginal, tdFoto);
+                estat.onclick = () => executarSubidaFoto(id, e.target.result, arxiu.name, tdFoto);
             }
         };
         reader.readAsDataURL(arxiu);
     };
 
-    // Redimensiona, puja a Cloudinary i acumula el canvi al buffer
     const executarSubidaFoto = async (id, base64, nomOriginal, tdFoto) => {
         const estat = tdFoto.querySelector('.foto-estat');
         if (estat) { estat.textContent = '⏳ Pujant...'; estat.style.cursor = 'default'; estat.onclick = null; }
-
         try {
-            // Redimensionar a màx 1080px mantenint proporció
             const img = new Image();
             img.src = base64;
             await img.decode();
-
             const canvas = document.createElement('canvas');
             let w = img.width, h = img.height;
             const MAX = 1080;
@@ -375,33 +522,19 @@
             else       { if (h > MAX) { w *= MAX / h; h = MAX; } }
             canvas.width = w; canvas.height = h;
             canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-
             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
-
             const formData = new FormData();
             formData.append('file', blob, `${Date.now()}.jpg`);
             formData.append('upload_preset', 'ml_default');
-
-            const res = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.CLOUDI_NAME}/image/upload`, {
-                method: 'POST',
-                body: formData
-            });
+            const res  = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.CLOUDI_NAME}/image/upload`, { method: 'POST', body: formData });
             const data = await res.json();
-
             if (data.secure_url) {
                 const nomFinal = data.public_id + '.' + data.format;
-
-                // Actualitzem la miniatura amb la URL real de Cloudinary
                 const thumb = tdFoto.querySelector('img.foto-thumb');
                 if (thumb) thumb.src = urlThumb(nomFinal);
-
-                // Acumulem el canvi al buffer igual que qualsevol altre camp
                 acumularCanvi(id, { Foto: nomFinal }, tdFoto);
-
                 if (estat) estat.textContent = '✅ Foto pendent de guardar';
-            } else {
-                throw new Error('Cloudinary no ha retornat URL');
-            }
+            } else { throw new Error('Cloudinary no ha retornat URL'); }
         } catch (error) {
             console.error('Error pujant foto:', error);
             if (estat) estat.textContent = '❌ Error pujant';
@@ -409,8 +542,150 @@
     };
 
 
-    // ─── CREAR FILA ──────────────────────────────────────────
-    const crearFila = (r, esNova = false) => {
+    // ─── GESTIÓ DE FOTOS — MODAL NOU PLAT ───────────────────
+
+    const prepararFotoModal = (input) => {
+        if (!input.files || !input.files[0]) return;
+        const arxiu = input.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            document.getElementById('modal-foto-zona').innerHTML = `<img src="${e.target.result}" alt="preview">`;
+            const estat = document.getElementById('modal-foto-estat');
+            estat.textContent = '💾 Confirmar foto?';
+            estat.style.cursor = 'pointer';
+            estat.onclick = () => executarFotoModal(e.target.result, arxiu.name);
+        };
+        reader.readAsDataURL(arxiu);
+    };
+
+    const executarFotoModal = async (base64, nomOriginal) => {
+        const estat = document.getElementById('modal-foto-estat');
+        estat.textContent = '⏳ Pujant foto...';
+        estat.style.cursor = 'default';
+        estat.onclick = null;
+        try {
+            const img = new Image();
+            img.src = base64;
+            await img.decode();
+            const canvas = document.createElement('canvas');
+            let w = img.width, h = img.height;
+            const MAX = 1080;
+            if (w > h) { if (w > MAX) { h *= MAX / w; w = MAX; } }
+            else       { if (h > MAX) { w *= MAX / h; h = MAX; } }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
+            const formData = new FormData();
+            formData.append('file', blob, `${Date.now()}.jpg`);
+            formData.append('upload_preset', 'ml_default');
+            const res  = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.CLOUDI_NAME}/image/upload`, { method: 'POST', body: formData });
+            const data = await res.json();
+            if (data.secure_url) {
+                nomFotoNouPlat = data.public_id + '.' + data.format;
+                estat.textContent = '✅ Foto llesta';
+
+                // Ara que tenim foto, activem el botó Crear si també hi ha nom
+                const nom = document.getElementById('modal-nom').value.trim();
+                if (nom) {
+                    const btnCrear = document.getElementById('modal-btn-crear');
+                    btnCrear.classList.add('actiu');
+                    btnCrear.disabled = false;
+                }
+                // Amaguem l'avís de foto obligatòria
+                const avis = document.getElementById('modal-avis-foto');
+                if (avis) avis.style.display = 'none';
+            } else { throw new Error('Cloudinary no ha retornat URL'); }
+        } catch (error) {
+            console.error('Error pujant foto:', error);
+            document.getElementById('modal-foto-estat').textContent = '❌ Error pujant';
+        }
+    };
+
+
+    // ─── MODAL NOU PLAT ──────────────────────────────────────
+
+    const obrirModalNouPlat = () => {
+        nomFotoNouPlat = '';
+        document.getElementById('modal-nom').value       = '';
+        document.getElementById('modal-preu').value      = '';
+        document.getElementById('modal-categoria').value = 'Plats';
+        document.getElementById('modal-desc').value      = '';
+        document.getElementById('modal-visible').checked = true;
+        document.getElementById('modal-foto-estat').textContent = '';
+        document.getElementById('modal-foto-zona').innerHTML = `
+            <div class="foto-placeholder"><span>📷</span>SELECCIONAR FOTO</div>`;
+        const btnCrear = document.getElementById('modal-btn-crear');
+        btnCrear.classList.remove('actiu');
+        btnCrear.disabled = true;
+        btnCrear.textContent = 'CREAR PLAT';
+        document.getElementById('modal-nou-plat').style.display = 'flex';
+        setTimeout(() => document.getElementById('modal-nom').focus(), 100);
+    };
+
+    const tancarModalNouPlat = () => {
+        document.getElementById('modal-nou-plat').style.display = 'none';
+        nomFotoNouPlat = '';
+    };
+
+    const crearNouPlat = async () => {
+        const nom = document.getElementById('modal-nom').value.trim();
+        if (!nom) return;
+
+        const dades = {
+            Nom:        nom,
+            Preu:       parseFloat(document.getElementById('modal-preu').value.replace(',', '.')) || 0,
+            Categoria:  [document.getElementById('modal-categoria').value],
+            Descripcio: document.getElementById('modal-desc').value.trim(),
+            Visible:    document.getElementById('modal-visible').checked
+        };
+        if (nomFotoNouPlat) dades.Foto = nomFotoNouPlat;
+
+        const btnCrear = document.getElementById('modal-btn-crear');
+        btnCrear.textContent = '⏳ Creant...';
+        btnCrear.classList.remove('actiu');
+        btnCrear.disabled = true;
+
+        try {
+            const res = await fetch(CONFIG.BASE_WORKER, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dades)
+            });
+            if (res.ok) {
+                tancarModalNouPlat();
+                const estat = document.getElementById('admin-estat');
+                estat.textContent = '✅ Plat creat — recarregant...';
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                btnCrear.textContent = 'CREAR PLAT';
+                btnCrear.classList.add('actiu');
+                btnCrear.disabled = false;
+                document.getElementById('admin-estat').textContent = '❌ Error al crear';
+            }
+        } catch (e) {
+            btnCrear.textContent = 'CREAR PLAT';
+            btnCrear.classList.add('actiu');
+            btnCrear.disabled = false;
+            document.getElementById('admin-estat').textContent = '❌ Error de connexió';
+        }
+    };
+
+    // El botó Crear s'activa només quan hi ha nom I foto pujada
+    const nomInputHandler = () => {
+        const nom      = document.getElementById('modal-nom').value.trim();
+        const btnCrear = document.getElementById('modal-btn-crear');
+        if (nom && nomFotoNouPlat) {
+            btnCrear.classList.add('actiu');
+            btnCrear.disabled = false;
+        } else {
+            btnCrear.classList.remove('actiu');
+            btnCrear.disabled = true;
+        }
+    };
+
+
+    // ─── CREAR FILA (registres existents) ────────────────────
+    const crearFila = (r) => {
         const f  = r.fields || {};
         const id = r.id || null;
 
@@ -419,11 +694,9 @@
 
         const fila = document.createElement('tr');
         if (id) fila.setAttribute('data-id', id);
-        if (esNova) fila.classList.add('fila-nova');
 
         const categories = ['Plats', 'Tapas', 'Postres', 'Begudes'];
 
-        // ─── Helpers d'esdeveniments ────────────────────────
         const onBlurText = (camp, el) => {
             const valorOriginal = el.value;
             el.addEventListener('blur', () => {
@@ -453,7 +726,7 @@
             });
         };
 
-        // ─── Visible ────────────────────────────────────────
+        // Visible
         const cbVisible = document.createElement('input');
         cbVisible.type    = 'checkbox';
         cbVisible.checked = f.Visible === true;
@@ -462,47 +735,16 @@
         tdVisible.className = 'col-check';
         tdVisible.appendChild(cbVisible);
 
-        // ─── Nom ─────────────────────────────────────────────
+        // Nom
         const inputNom = document.createElement('input');
-        inputNom.type        = 'text';
-        inputNom.value       = f.Nom || '';
-        inputNom.placeholder = esNova ? 'Escriu el nom i prem Tab...' : '';
-
-        if (esNova) {
-            inputNom.addEventListener('blur', async () => {
-                if (!inputNom.value.trim()) return;
-                const estat = document.getElementById('admin-estat');
-                estat.textContent = '⏳ Creant plat...';
-                try {
-                    const res = await fetch(CONFIG.BASE_WORKER, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            Nom:       inputNom.value.trim(),
-                            Preu:      0,
-                            Categoria: ['Plats'],
-                            Visible:   false
-                        })
-                    });
-                    if (res.ok) {
-                        estat.textContent = '✅ Plat creat — recarregant...';
-                        setTimeout(() => location.reload(), 1000);
-                    } else {
-                        estat.textContent = '❌ Error al crear';
-                    }
-                } catch (e) {
-                    estat.textContent = '❌ Error de connexió';
-                }
-            });
-        } else {
-            onBlurText('Nom', inputNom);
-        }
-
+        inputNom.type  = 'text';
+        inputNom.value = f.Nom || '';
+        onBlurText('Nom', inputNom);
         const tdNom = document.createElement('td');
         tdNom.className = 'col-nom';
         tdNom.appendChild(inputNom);
 
-        // ─── Preu ─────────────────────────────────────────────
+        // Preu
         const inputPreu = document.createElement('input');
         inputPreu.type  = 'number';
         inputPreu.step  = '0.01';
@@ -512,12 +754,11 @@
         tdPreu.className = 'col-preu';
         tdPreu.appendChild(inputPreu);
 
-        // ─── Categoria (select) ───────────────────────────────
+        // Categoria
         const sel = document.createElement('select');
         categories.forEach(c => {
             const opt = document.createElement('option');
-            opt.value       = c;
-            opt.textContent = c;
+            opt.value = c; opt.textContent = c;
             if (getCategoria(f.Categoria) === c) opt.selected = true;
             sel.appendChild(opt);
         });
@@ -526,7 +767,7 @@
         tdCategoria.className = 'col-categoria';
         tdCategoria.appendChild(sel);
 
-        // ─── Descripcio ───────────────────────────────────────
+        // Descripcio
         const inputDesc = document.createElement('input');
         inputDesc.type  = 'text';
         inputDesc.value = f.Descripcio || '';
@@ -535,35 +776,30 @@
         tdDesc.className = 'col-descripcio';
         tdDesc.appendChild(inputDesc);
 
-        // ─── Foto (miniatura + upload Cloudinary) ─────────────
-        // La cel·la conté: miniatura (o placeholder) + input file ocult + línia d'estat
+        // Foto
         const nomFoto = getFoto(f.Foto);
         const tdFoto  = document.createElement('td');
         tdFoto.className = 'col-foto';
 
-        // Input file ocult — s'activa en clicar la miniatura
         const inputFile = document.createElement('input');
         inputFile.type   = 'file';
         inputFile.accept = 'image/*';
         inputFile.style.display = 'none';
         inputFile.addEventListener('change', () => prepararSubidaFoto(inputFile, id, tdFoto));
 
-        // Miniatura o placeholder segons si ja hi ha foto
         let visorFoto;
         if (nomFoto) {
-            visorFoto     = document.createElement('img');
+            visorFoto = document.createElement('img');
             visorFoto.src = urlThumb(nomFoto);
             visorFoto.className = 'foto-thumb';
             visorFoto.alt = 'foto';
         } else {
-            visorFoto           = document.createElement('div');
+            visorFoto = document.createElement('div');
             visorFoto.className = 'foto-buit';
             visorFoto.textContent = '📷';
         }
-        // Clicar la miniatura (o placeholder) obre el selector de fitxer
         visorFoto.addEventListener('click', () => inputFile.click());
 
-        // Línia d'estat petita sota la miniatura
         const divEstat = document.createElement('div');
         divEstat.className = 'foto-estat';
 
@@ -571,7 +807,6 @@
         tdFoto.appendChild(visorFoto);
         tdFoto.appendChild(divEstat);
 
-        // ─── Afegir columnes a la fila ────────────────────────
         fila.appendChild(tdVisible);
         fila.appendChild(tdNom);
         fila.appendChild(tdPreu);
@@ -582,6 +817,7 @@
         return fila;
     };
 
+
     // ─── MOSTRAR LOGIN ───────────────────────────────────────
     const mostrarLogin = () => {
         document.body.style.opacity = '1';
@@ -589,22 +825,20 @@
         if (!panel) return;
 
         panel.innerHTML = `
-            <div style="
-                display: flex; align-items: center; justify-content: center;
-                min-height: 100vh; padding: 20px; margin: -20px;">
-                <div style="
-                    background: #0d0d1a; border: 1px solid #c8973a;
-                    padding: 40px 30px; width: 90%; max-width: 320px;
-                    text-align: center; font-family: 'Segoe UI', sans-serif;">
+            <div style="display:flex; align-items:center; justify-content:center;
+                min-height:100vh; padding:20px; margin:-20px;">
+                <div style="background:#0d0d1a; border:1px solid #c8973a;
+                    padding:40px 30px; width:90%; max-width:320px;
+                    text-align:center; font-family:'Segoe UI', sans-serif;">
                     <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}"
-                        style="height:60px; margin: 0 auto 20px auto; display:block;">
+                        style="height:60px; margin:0 auto 20px auto; display:block;">
                     <p style="color:#c8973a; letter-spacing:2px; text-transform:uppercase;
                         font-size:12px; margin-bottom:20px;">Accés restringit</p>
                     <input id="login-input" type="text" placeholder="Contrasenya"
                         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                         style="width:100%; padding:10px; background:#0d0d1a; border:1px solid #444;
                         color:#eee; font-size:14px; outline:none; margin-bottom:12px;
-                        text-align:center; letter-spacing:2px; -webkit-text-security: disc;">
+                        text-align:center; letter-spacing:2px; -webkit-text-security:disc;">
                     <button id="login-boto"
                         style="width:100%; padding:10px; background:#2c3e35; color:#c8973a;
                         border:1px solid #c8973a; font-size:13px; letter-spacing:1px;
@@ -652,6 +886,7 @@
         setTimeout(() => document.getElementById('login-input').focus(), 100);
     };
 
+
     // ─── MOSTRAR TAULA ───────────────────────────────────────
     const mostrarTaula = async () => {
         const panel = document.getElementById('admin-panel');
@@ -665,6 +900,7 @@
 
         panel.innerHTML = `
             <div id="admin-barra">
+                <button id="btn-nou">＋ Nou plat</button>
                 <button id="btn-guardar">💾 Guardar</button>
                 <button id="btn-descartar">✕ Descartar</button>
                 <span id="admin-comptador"></span>
@@ -682,27 +918,70 @@
                 </thead>
                 <tbody id="admin-tbody"></tbody>
             </table>
+
+            <div id="modal-nou-plat">
+                <div class="modal-caixa">
+                    <h2>Nou plat</h2>
+                    <div id="modal-foto-zona">
+                        <div class="foto-placeholder"><span>📷</span>SELECCIONAR FOTO</div>
+                    </div>
+                    <input type="file" id="modal-foto-input" accept="image/*" style="display:none;">
+                    <div id="modal-foto-estat"></div>
+                    <input type="text"   id="modal-nom"       placeholder="Nom del plat *">
+                    <input type="number" id="modal-preu"      placeholder="Preu (0.00)" step="0.01">
+                    <select id="modal-categoria">
+                        <option value="Plats">Plats</option>
+                        <option value="Tapas">Tapas</option>
+                        <option value="Postres">Postres</option>
+                        <option value="Begudes">Begudes</option>
+                    </select>
+                    <textarea id="modal-desc" placeholder="Descripció"></textarea>
+                    <div class="modal-fila">
+                        <input type="checkbox" id="modal-visible" checked
+                            style="width:16px; height:16px; accent-color:#c8973a;">
+                        <label for="modal-visible"
+                            style="color:#aaa; font-size:12px; letter-spacing:1px;">
+                            Visible a la web
+                        </label>
+                    </div>
+                    <p id="modal-avis-foto" style="font-size:11px; color:#e74c3c; text-align:center; letter-spacing:1px;">⚠️ Cal pujar una foto per crear el plat</p>
+                    <button id="modal-btn-crear" class="modal-boto-crear" disabled>CREAR PLAT</button>
+                    <button id="modal-btn-cancel" class="modal-boto-cancel">Cancel·lar</button>
+                </div>
+            </div>
         `;
 
+        // Events barra
+        document.getElementById('btn-nou').addEventListener('click', obrirModalNouPlat);
         document.getElementById('btn-guardar').addEventListener('click', () => {
             if (Object.keys(window.CANVIS_PENDENTS).length > 0) guardarTot();
         });
-
         document.getElementById('btn-descartar').addEventListener('click', () => {
             if (Object.keys(window.CANVIS_PENDENTS).length > 0) descartarCanvis();
         });
 
+        // Events modal nou plat
+        document.getElementById('modal-foto-zona').addEventListener('click', () => {
+            document.getElementById('modal-foto-input').click();
+        });
+        document.getElementById('modal-foto-input').addEventListener('change', (e) => {
+            prepararFotoModal(e.target);
+        });
+        document.getElementById('modal-nom').addEventListener('input', nomInputHandler);
+        document.getElementById('modal-btn-crear').addEventListener('click', crearNouPlat);
+        document.getElementById('modal-btn-cancel').addEventListener('click', tancarModalNouPlat);
+
+        // Carregar registres
         const res  = await fetch(CONFIG.BASE_WORKER);
         const data = await res.json();
         registres  = data;
 
         const tbody = document.getElementById('admin-tbody');
         registres.forEach(r => tbody.appendChild(crearFila(r)));
-        // Fila buida a dalt per crear nous plats
-        tbody.prepend(crearFila({ fields: {}, id: null }, true));
 
         document.body.style.opacity = '1';
     };
+
 
     // ─── INICIALITZAR ────────────────────────────────────────
     const inicialitzar = async () => {
