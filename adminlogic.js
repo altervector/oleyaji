@@ -203,6 +203,33 @@
             outline: 2px solid #ff0000 !important;
         }
 
+        /* ─── FILA MARCADA PER ELIMINAR ─── */
+        tr.per-eliminar td {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+
+        /* ─── BOTÓ DELETE ─── */
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 2px 6px;
+            line-height: 1;
+        }
+
+        .btn-delete:hover {
+            color: #e74c3c;
+        }
+
+        .btn-delete.marcat {
+            color: #e74c3c;
+        }
+
+        .col-delete { width: 40px; text-align: center; }
+
         /* ─── MINIATURA FOTO ─── */
         .foto-thumb {
             width: 48px;
@@ -807,12 +834,38 @@
         tdFoto.appendChild(visorFoto);
         tdFoto.appendChild(divEstat);
 
+        // ─── Botó eliminar ────────────────────────────────
+        const btnDel = document.createElement('button');
+        btnDel.className   = 'btn-delete';
+        btnDel.textContent = '🗑';
+        btnDel.title       = 'Marcar per eliminar';
+        btnDel.addEventListener('click', () => {
+            if (fila.classList.contains('per-eliminar')) {
+                // Desmarcar — treure del buffer
+                fila.classList.remove('per-eliminar');
+                btnDel.classList.remove('marcat');
+                if (window.CANVIS_PENDENTS[id]) {
+                    delete window.CANVIS_PENDENTS[id];
+                    actualitzarBarra();
+                }
+            } else {
+                // Marcar per eliminar — afegir al buffer
+                fila.classList.add('per-eliminar');
+                btnDel.classList.add('marcat');
+                acumularCanvi(id, { _delete: true }, btnDel);
+            }
+        });
+        const tdDelete = document.createElement('td');
+        tdDelete.className = 'col-delete';
+        tdDelete.appendChild(btnDel);
+
         fila.appendChild(tdVisible);
         fila.appendChild(tdNom);
         fila.appendChild(tdPreu);
         fila.appendChild(tdCategoria);
         fila.appendChild(tdDesc);
         fila.appendChild(tdFoto);
+        fila.appendChild(tdDelete);
 
         return fila;
     };
@@ -904,6 +957,7 @@
                 <button id="btn-guardar">💾 Guardar</button>
                 <button id="btn-descartar">✕ Descartar</button>
                 <span id="admin-comptador"></span>
+                <button id="btn-recarregar" style="margin-left:auto;">🔄 Forçar recàrrega</button>
             </div>
             <table>
                 <thead>
@@ -914,6 +968,7 @@
                         <th class="col-categoria">Categoria</th>
                         <th class="col-descripcio">Descripció</th>
                         <th class="col-foto">Foto</th>
+                        <th class="col-delete"></th>
                     </tr>
                 </thead>
                 <tbody id="admin-tbody"></tbody>
@@ -961,6 +1016,13 @@
         });
 
         // Events modal nou plat
+        document.getElementById('btn-recarregar').addEventListener('click', async () => {
+            const estat = document.getElementById('admin-estat');
+            estat.textContent = '⏳ Recarregant...';
+            await fetch(`${CONFIG.BASE_WORKER}/reset-kv`, { method: 'POST' });
+            location.reload();
+        });
+
         document.getElementById('modal-foto-zona').addEventListener('click', () => {
             document.getElementById('modal-foto-input').click();
         });
