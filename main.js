@@ -183,7 +183,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 <footer class="footer">
                     <p class="footer-nom">${CONFIG.NOM}</p>
                     <p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=OLÉ+Y+AJÍ+COMIDA+MEDITERRANEA+Y+LATINA+Vilafranca" target="_blank">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Ole+y+Aji+Vilafranca" target="_blank">
                             ${CONFIG.ADRECA}
                         </a>
                     </p>
