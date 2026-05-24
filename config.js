@@ -24,6 +24,7 @@ const CONFIG = {
     URL_OFICIAL:   "https://oleyaji.altervector.com",
 
     // 2.2 RUTES Imatges
+    BACKGROUND:      "",
     BLOC_HERO:       "images/hero.jpg",
     BLOC1:           "images/plats.jpg",
     BLOC2:           "images/tapes.jpg",
