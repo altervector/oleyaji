@@ -355,16 +355,17 @@
             width: 100%;
             height: 160px;
             background: #1a1a2e;
-            border: 1px dashed #555;
+            border: 2px solid #c8973a;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             overflow: hidden;
+            transition: background 0.2s;
         }
 
         #modal-foto-zona:hover {
-            border-color: #c8973a;
+            background: #1f1f3a;
         }
 
         #modal-foto-zona img {
@@ -377,14 +378,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            color: #555;
-            font-size: 12px;
-            letter-spacing: 1px;
+            gap: 10px;
+            color: #c8973a;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         #modal-foto-zona .foto-placeholder span {
-            font-size: 32px;
+            font-size: 36px;
         }
 
         #modal-foto-estat {
@@ -653,9 +655,7 @@
             });
             if (res.ok) {
                 tancarModalNouPlat();
-                const estat = document.getElementById('admin-estat');
-                estat.textContent = '✅ Plat creat — recarregant...';
-                setTimeout(() => location.reload(), 1000);
+                location.reload();
             } else {
                 btnCrear.textContent = 'CREAR PLAT';
                 btnCrear.classList.add('actiu');
