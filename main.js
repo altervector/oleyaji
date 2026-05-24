@@ -182,7 +182,11 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
             footer.innerHTML = `
                 <footer class="footer">
                     <p class="footer-nom">${CONFIG.NOM}</p>
-                    <p>${CONFIG.ADRECA}</p>
+                    <p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=OLÉ+Y+AJÍ+COMIDA+MEDITERRANEA+Y+LATINA+Vilafranca" target="_blank">
+                            ${CONFIG.ADRECA}
+                        </a>
+                    </p>
                     <p><a href="tel:${CONFIG.TELEFON}">${CONFIG.TELEFON}</a></p>
                     <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
                     <p>
