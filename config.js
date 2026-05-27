@@ -30,6 +30,7 @@ const CONFIG = {
     BLOC2:           "images/tapes.jpg",
     BLOC3:           "images/postres.jpg",
     BLOC4:           "images/begudes.png",
+    QR:              "/qr/qr-oleiaji.png",
 
     // 2.3 RUTES Textos
     HERO_BOTO:       "Descúbrenos",
