@@ -7,7 +7,7 @@ const CONFIG = {
 
     // 1. NEGOCI
     NOM:            "Olé y Ají",
-    LOGO:           "Icon/logoOA.jpg",
+    LOGO:           "logo/logoOA.png",
     SLOGAN:         "Donde Colombia y España se unen en sabor.",
     TELEFON:        "+9344008645",
     EMAIL:          "oleyaji@altervector.com",
@@ -21,16 +21,17 @@ const CONFIG = {
     REPO_URL:       "https://altervector.github.io/oleyaji/",
     BASE_URL:       "./",
     BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
-    URL_OFICIAL:   "https://oleyaji.altervector.com",
+    URL_OFICIAL:    "https://oleyaji.altervector.com",
+    ASSETS:         "https://avsets.pages.dev/",
 
     // 2.2 RUTES Imatges
-    BACKGROUND:      "",
-    BLOC_HERO:       "images/hero.jpg",
-    BLOC1:           "images/plats.jpg",
-    BLOC2:           "images/tapes.jpg",
-    BLOC3:           "images/postres.jpg",
-    BLOC4:           "images/begudes.png",
-    QR:              "/qr/qr-oleyaji.png",
+    //BACKGROUND:      "Canviar en el css del .html",
+    BLOC_HERO:       "images/oleyaji/hero.jpg",
+    BLOC1:           "images/oleyaji/plats.jpg",
+    BLOC2:           "images/oleyaji/tapes.jpg",
+    BLOC3:           "images/oleyaji/postres.jpg",
+    BLOC4:           "images/oleyaji/begudes.png",
+    QR:              "qr/qr-oleyaji.png",
 
     // 2.3 RUTES Textos
     HERO_BOTO:       "Descúbrenos",

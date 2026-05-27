@@ -45,7 +45,7 @@
                     max-width: 320px;
                     text-align: center;
                     font-family: 'Segoe UI', sans-serif;">
-                    <img src="${CONFIG.BASE_URL}${CONFIG.LOGO}" alt="${CONFIG.NOM}"
+                    <img src="${CONFIG.ASSETS}${CONFIG.LOGO}" alt="${CONFIG.NOM}"
                         style="height:60px; margin: 0 auto 20px auto; display:block;">
                     <p style="color:#c8973a; letter-spacing:2px; text-transform:uppercase;
                         font-size:12px; margin-bottom:20px;">Accés restringit</p>
@@ -134,7 +134,7 @@
     // Estil galeria de l'Olé y Ají — un plat per fila amb foto
     const pintarCataleg = function(registres, titol) {
         const baseCloudy = `https://res.cloudinary.com/${CONFIG.CLOUDI_NAME}/image/upload/f_auto,q_auto/`;
-        const fotoDefault = `${CONFIG.BASE_URL}Icon/Default.png`;
+        const fotoDefault = `${CONFIG.ASSETS}shared/Default.png`;
 
         let html = `
             <div style="text-align:center; margin-bottom:30px; 
