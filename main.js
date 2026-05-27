@@ -169,7 +169,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         <a href="tel:${CONFIG.TELEFON}">📞 ${CONFIG.TELEFON}</a>
                     </p>
                     <p class="seccio-text">
-                        <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
+                        
                     </p>
                 </section>
             `;
