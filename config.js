@@ -12,7 +12,7 @@ const CONFIG = {
     TELEFON:        "+9344008645",
     EMAIL:          "oleyaji@altervector.com",
     ADRECA:         "Plaça Josep Anselm Clavé, 6. 08720 Vilafranca del Penedés, Barcelona",
-    INSTAGRAM:      "https://www.instagram.com/oleyaji",
+    INSTAGRAM:      "https://www.instagram.com/oleyajivilafranca",
     FACEBOOK:       "https://www.facebook.com/",
     EMAIL_SUPORT:   "suport@altervector.com",
 
