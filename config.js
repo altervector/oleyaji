@@ -24,6 +24,8 @@ const CONFIG = {
     BASE_WORKER:    "https://oleyaji.altervector.workers.dev",
     URL_OFICIAL:    "https://oleyaji.altervector.com",
     ASSETS:         "https://avsets.pages.dev/",
+    URL_MAPS:       "https://www.google.com/maps/search/?api=1&query=Ole+y+Aji+Vilafranca",
+    URL_RESSENYES:  "https://search.google.com/local/writereview?placeid=ChIJ0x2mkSp5pBIRAbvYW6nhpFo",
 
     // 2.2 RUTES Imatges
     //BACKGROUND:      "Canviar en el css del .html",

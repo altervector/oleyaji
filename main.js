@@ -183,7 +183,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                 <footer class="footer">
                     <p class="footer-nom">${CONFIG.NOM}</p>
                     <p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Ole+y+Aji+Vilafranca" target="_blank">
+                        <a href="${CONFIG.URL_MAPS}" target="_blank">
                             ${CONFIG.ADRECA}
                         </a>
                     </p>
@@ -195,7 +195,7 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                             <img src="${CONFIG.ASSETS}icon/Icoinsta.png" alt="Instagram" class="icona-app"> Instagram
                         </a>
                         <p>
-                            <a href="https://search.google.com/local/writereview?placeid=ChIJ0x2mkSp5pBIRAbvYW6nhpFo" target="_blank">
+                            <a href="${CONFIG.URL_RESSENYES}" target="_blank">
                                 <img src="${CONFIG.ASSETS}icon/google.png" alt="Google" class="icona-app">Google
                             </a>
                         </p>
