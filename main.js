@@ -6,7 +6,7 @@
 
 (function() {
 
-    const inicialitzar = () => {
+    const inicialitzar = async() => {
 
         /* ─── 1. NAVBAR ─────────────────────────────────────────── */
         const navbar = document.getElementById('navbar');
