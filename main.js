@@ -172,6 +172,12 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         
                     </p>
                 </section>
+
+                <!-- Enllaç de tornada a l'inici -->
+                <div style="text-align: center; margin: 20px 0; list-style: none;">
+                    <li><a href="#hero" style="text-decoration: none; color: #ff0000a5; font-weight: bold;">Inici 👆</a></li>
+                </div>
+                
             `;
         }
 
