@@ -10,6 +10,7 @@ const CONFIG = {
     LOGO:           "logo/logoOA.png",
     SLOGAN:         "Donde Colombia y España se unen en sabor.",
     TELEFON:        "+9344008645",
+    MOBIL:          "642 32 55 82",
     EMAIL:          "oleyaji@altervector.com",
     ADRECA:         "Plaça Josep Anselm Clavé, 6. 08720 Vilafranca del Penedés, Barcelona",
     INSTAGRAM:      "https://www.instagram.com/oleyajivilafranca",

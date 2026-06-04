@@ -176,7 +176,8 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
         }
 
         /* ─── 4. FOOTER ─────────────────────────────────────────── */
-        const footer = document.getElementById('footer');
+
+                const footer = document.getElementById('footer');
         if (footer) {
             footer.innerHTML = `
                 <footer class="footer">
@@ -187,24 +188,36 @@ logo.addEventListener('contextmenu', (e) => e.preventDefault());
                         </a>
                     </p>
                     <p><a href="tel:${CONFIG.TELEFON}">${CONFIG.TELEFON}</a></p>
-                    <a href="mailto:${CONFIG.EMAIL}">✉️ ${CONFIG.EMAIL}</a>
+                    <a href="tel:${CONFIG.MOBIL}">${CONFIG.MOBIL}</a></p>
+                    <a href="mailto:${CONFIG.EMAIL}"><img src="${CONFIG.ASSETS}icon/Icomail.png" alt="Instagram" class="icona-app"> ${CONFIG.EMAIL}</a>
                     <p>
-                        <a href="${CONFIG.INSTAGRAM}" target="_blank">Instagram</a>
-                        &nbsp;·&nbsp;
-                        <a href="${CONFIG.FACEBOOK}" target="_blank">Facebook</a>
+                        <a href="${CONFIG.INSTAGRAM}" target="_blank">
+                            <img src="${CONFIG.ASSETS}icon/Icoinsta.png" alt="Instagram" class="icona-app"> Instagram
+                        </a>
+                        <p>
+                            <a href="https://search.google.com/local/writereview?placeid=ChIJ0x2mkSp5pBIRAbvYW6nhpFo" target="_blank"></a>
+                                <img src="${CONFIG.ASSETS}icon/google.png" alt="Google" class="icona-app">Google
+                            </a>
+                        </p>
                     </p>
                     <p class="footer-qr">
-                                <a href="${CONFIG.ASSETS}${CONFIG.QR}">
-                                <img src="${CONFIG.ASSETS}${CONFIG.QR}" alt="QR">
-                                </a>
-                            </p>
+                        <a href="${CONFIG.ASSETS}${CONFIG.QR}">
+                            <img src="${CONFIG.ASSETS}${CONFIG.QR}" alt="QR">
+                        </a>
+                    </p>
                     <p class="footer-poweredby">
                         Powered by <a href="https://www.altervector.com" target="_blank">AlterVector</a>
+                        <!-- #visites s'omple via Worker (BLOC 6) -->
                         <span id="visites"></span>
                     </p>
                 </footer>
             `;
         }
+
+
+       
+
+
 
         /* ─── 5. NAVBAR SCROLL ───────────────────────────────────── */
         window.addEventListener('scroll', () => {
