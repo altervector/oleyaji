@@ -557,6 +557,7 @@
             formData.append('upload_preset', 'ml_default');
             const res  = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.CLOUDI_NAME}/image/upload`, { method: 'POST', body: formData });
             const data = await res.json();
+            console.log(data)                       //xxx//
             if (data.secure_url) {
                 const nomFinal = data.public_id + '.' + data.format;
                 const thumb = tdFoto.querySelector('img.foto-thumb');
