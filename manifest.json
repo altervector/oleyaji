@@ -9,7 +9,7 @@
     "orientation": "any",
     "icons": [
         {
-            "src": "Icon/logoOAtrans.png",
+            "src": "https://avsets.pages.dev/logo/logoOAtrans.png",
             "sizes": "any",
             "type": "image/png"
         }
